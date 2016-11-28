@@ -1,5 +1,5 @@
 <h3 class='center'> Past Run Stats: </h3>
-<% if @user.runs.any? %>
+<% if @past_runs.any? %>
   <div class = 'container'>
     <table class='responsive-table highlight bordered'>
       <tr>
@@ -11,14 +11,18 @@
         <th>Average Pace</th>
         <th> Edit </th>
       </tr>
-      <% @user.runs.each do |run| %>
+      <% @past_runs.each do |run| %>
       <tr>
         <td><%= run.run_date %></td>
         <td><%= run.zipcode %></td>
         <% if run.companion %>
-          <td><%= run.companion.name %></td>
+          <% if run.runner_id == current_user.id %>
+            <td><%= run.companion.name %></td>
+          <% elsif run.companion_id == current_user.id %>
+            <td><%= run.runner.name %>
+          <% end %>
         <% else %>
-          <td> Solo  </td>
+          <td> Solo </td>
         <% end %>
         <% if run.distance %>
           <td><%= run.distance %></td>

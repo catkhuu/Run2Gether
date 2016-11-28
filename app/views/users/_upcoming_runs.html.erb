@@ -1,5 +1,5 @@
 <h3 class='center'> Upcoming Runs: </h3>
-<% if @user.runs.any? %>
+<% if @upcoming_runs.any? %>
   <div class = 'container'>
     <table class='responsive-table highlight bordered'>
       <tr>
@@ -8,16 +8,20 @@
         <th>Desired Distance</th>
         <th>Companion</th>
       </tr>
-      <% @user.runs.each do |run| %>
+      <% @upcoming_runs.each do |run| %>
       <tr>
         <td><%= run.run_date %></td>
         <td><%= run.zipcode %></td>
+        <td><%=run.desired_distance %></td>
         <% if run.companion %>
-          <td><%= run.companion.name %></td>
+          <% if run.runner_id == current_user.id %>
+            <td><%= run.companion.name %></td>
+          <% elsif run.companion_id == current_user.id %>
+            <td><%= run.runner.name %>
+          <% end %>
         <% else %>
           <td> Still Searching </td>
         <% end %>
-        <td><%=run.desired_distance %></td>
       <% end %>
     </table>
   </div>

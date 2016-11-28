@@ -20,6 +20,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    users_runs = Run.all.select { |run| run.runner_id == current_user.id || run.companion_id == current_user.id }
+    @past_runs = users_runs.select { |run| run.converted_date < DateTime.now }
+    @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
     # binding.pry
     # runs_by_date = @user.runs.where("run_date > ?", DateTime.now)
     # results = {}
