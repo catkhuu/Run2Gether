@@ -5,6 +5,10 @@ class Run < ApplicationRecord
   geocoded_by :zipcode
   after_validation :geocode
 
+  def converted_date
+    DateTime.parse(self.run_date)
+  end
+
   def run_hours
   end
 
