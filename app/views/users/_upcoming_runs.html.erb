@@ -1,0 +1,28 @@
+<h3> Upcoming Runs: </h3>
+<% if @user.runs.any? %>
+  <h3 class='center'> Upcoming Runs </h3>
+  <div class = 'container'>
+    <table class='responsive-table highlight bordered'>
+      <tr>
+        <th>Run Date</th>
+        <th>Location</th>
+        <th>Desired Distance</th>
+        <th>Companion</th>
+      </tr>
+      <% @user.runs.each do |run| %>
+      <tr>
+        <td><%= run.run_date %></td>
+        <td><%= run.zipcode %></td>
+        <% if run.companion %>
+          <td><%= run.companion.name %></td>
+        <% else %>
+          <td> Still Searching </td>
+        <% end %>
+        <td><%=run.desired_distance %></td>
+      <% end %>
+    </table>
+  </div>
+<% else %>
+  <p> You haven't planned any runs yet! Start a search or create a run to start planning! </p>
+<% end %>
+

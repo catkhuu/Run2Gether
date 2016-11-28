@@ -24,7 +24,7 @@ class RunsController < ApplicationController
   def new_search
     if request.xhr?
       render 'new_search', layout: false
-    end 
+    end
   end
 
   def search
@@ -40,6 +40,20 @@ class RunsController < ApplicationController
 
   def update
   end
+
+  def edit_stats
+    @run = Run.find_by(id: params[:run_id])
+  end
+
+  def update_stats
+    @run = Run.find_by(id: params[:run_id])
+    if @run.update(stats_params)
+      redirect_to user_path(@run.runner_id)
+    else
+      render 'edit_stats'
+    end
+  end
+
 
   private
 

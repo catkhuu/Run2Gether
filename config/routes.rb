@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get '/runs/new_search' => 'runs#new_search'
   resources :users, except: [:index, :destroy] do
     resources :profiles, except: [:index, :destroy]
-    resources :runs
+    resources :runs do
+      get '/edit_stats' => 'runs#edit_stats'
+      put '/update_stats' => 'runs#update_stats'
+    end
   end
   resources :sessions, only: [:new, :create, :destroy]
   root 'pages#show'
