@@ -57,6 +57,10 @@ class RunsController < ApplicationController
 
   private
 
+  def stats_params
+    params.require(:run).permit(:distance, :run_time, :run_pace)
+  end
+
   def run_params
     params.require(:run).permit(:run_date, :time, :zipcode, :mood_id, :runner_id)
   end
