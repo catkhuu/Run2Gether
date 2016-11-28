@@ -9,7 +9,8 @@
 
       </div>
             <div class="card-action">
-              <%= link_to "Accept", add_companion_path %>
+
+              <%= link_to "Accept", {action: :add_companion, :run_id => @final.id}, method: :put %>
 
             </div>
           </div>

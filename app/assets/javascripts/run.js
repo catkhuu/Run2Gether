@@ -39,8 +39,27 @@ $(function() {
         $('#errors').append('<li>' + value + '</li>')
       });
     })
+  });
+
+  $('#rundown_container').on('click', '.accept-run-btn', function(event) {
+    event.preventDefault();
+    var $acceptBtn = $(this)
+    var route = $acceptBtn.parent().attr('action');
+    var runId = $acceptBtn.attr('data');
+    var data = { run_id: runId }
+    $.ajax({
+      url: route,
+      method: 'POST', //POST for now, but will be a PATCH
+      data: data
+    }).done(function(response) {
+      alert(response);
+    })
+
   })
 });
+});
+
+
 
 function hideButtons() {
   $('#start-new-run-btn').hide();
