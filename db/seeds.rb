@@ -7,9 +7,7 @@ experience_options = ['Beginner', 'Intermediate','Advanced', 'Competitive']
   User.create!( name: Faker::Name.first_name,
                 email: Faker::Internet.email,
                 password: 'password',
-                location: random[0],
-                latitude: random[1],
-                longitude: random[2],
+                zipcode: random[0],
                 password_confirmation: 'password')
   end
 

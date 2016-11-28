@@ -24,7 +24,7 @@ class RunsController < ApplicationController
   def new_search
     if request.xhr?
       render 'new_search', layout: false
-    end 
+    end
   end
 
   def search
@@ -44,7 +44,7 @@ class RunsController < ApplicationController
   private
 
   def run_params
-    params.require(:run).permit(:run_date, :time, :zipcode, :mood_id, :runner_id)
+    params.require(:run).permit(:run_date, :time, :zipcode, :runner_id, :desired_distance)
   end
 
   def find_and_ensure_run
