@@ -1,70 +1,55 @@
-zips = [10023, 10024, 10025, 10001, 10011, 10018,
-  10019, 10020, 10036, 10029, 10035, 10010, 10016,
-  10017, 10022, 10012, 10013, 10014, 10004, 10005,
-  10006, 10007, 10038, 10280, 10002, 10003, 10009,
-  10021, 10028, 10044, 10065, 10075, 10128]
+zips = [[10002, 40.72001, -73.993787], [10003, 40.731251, -73.98922],  [10009, 40.726189, -73.979591],  [10463, 40.878948, -73.907277],  [10471, 40.913575, -73.908619]]
 
 experience_options = ['Beginner', 'Intermediate','Advanced', 'Competitive']
 
 50.times do
+  random = zips.sample
   User.create!( name: Faker::Name.first_name,
                 email: Faker::Internet.email,
                 password: 'password',
-                location: zips.sample,
+                location: random[0],
+                latitude: random[1],
+                longitude: random[2],
                 password_confirmation: 'password')
   end
 
-
-
 User.all.each do |user|
   Profile.create!(  why_i_run: Faker::StarWars.quote,
-                    user_pace: Faker::Time.forward(23, :morning),
                     goals: Faker::ChuckNorris.fact,
                     experience: experience_options.sample,
                     user: user,
                     need_to_knows: Faker::Superhero.power)
                   end
 
-100.times do
-  Mood.create!( name: Faker::Hipster.word,
-                mood_pace: Faker::Time.forward(23, :morning),
-                mood_experience: experience_options.sample,
-                desired_distance: rand(2..15),
-                user: User.all.sample)
-end
+# future_runs = [Faker::Time.forward(30, :morning), Faker::Time.forward(30, :afternoon), Faker::Time.forward(30, :evening)]
 
-### Future runs
-future_runs = [Faker::Time.forward(30, :morning), Faker::Time.forward(30, :afternoon), Faker::Time.forward(30, :evening)]
-
-250.times do
-  runner = User.all.sample
-  mood = Mood.where(user: runner).sample
-  Run.create!(  distance: rand(2..15),
-                run_time: Faker::Time.forward(23, :morning),
-                run_pace: Faker::Time.forward(23, :morning),
-                runner: User.all.sample,
-                companion: User.all.sample,
-                run_date: future_runs.sample,
-                time: Faker::Time.forward(23, :morning),
-                zipcode: zips.sample,
-                mood_id: mood)
-end
+# 250.times do
+#   runner = User.all.sample
+#   Run.create!(  distance: rand(2..15),
+#                 run_time: Faker::Time.forward(23, :morning),
+#                 run_pace: Faker::Time.forward(23, :morning),
+#                 runner: User.all.sample,
+#                 companion: User.all.sample,
+#                 run_date: future_runs.sample,
+#                 time: Faker::Time.forward(23, :morning),
+#                 zipcode: zips.sample)
+# end
+# #
+# previous_runs = [Faker::Time.backward(30, :morning), Faker::Time.backward(30, :afternoon), Faker::Time.backward(30, :evening)]
 #
-previous_runs = [Faker::Time.backward(30, :morning), Faker::Time.backward(30, :afternoon), Faker::Time.backward(30, :evening)]
-
-250.times do
-  runner = User.all.sample
-  mood = Mood.where(user: runner).sample
-  Run.create!(  distance: rand(2..15),
-                run_time: Faker::Time.backward(23, :morning),
-                run_pace: Faker::Time.forward(23, :morning),
-                runner: User.all.sample,
-                companion: User.all.sample,
-                run_date: previous_runs.sample,
-                time: Faker::Time.forward(23, :morning),
-                zipcode: zips.sample,
-                mood_id: mood)
-end
+# 250.times do
+#   runner = User.all.sample
+#   mood = Mood.where(user: runner).sample
+#   Run.create!(  distance: rand(2..15),
+#                 run_time: Faker::Time.backward(23, :morning),
+#                 run_pace: Faker::Time.forward(23, :morning),
+#                 runner: User.all.sample,
+#                 companion: User.all.sample,
+#                 run_date: previous_runs.sample,
+#                 time: Faker::Time.forward(23, :morning),
+#                 zipcode: zips.sample,
+#                 mood_id: mood)
+# end
 
 
 

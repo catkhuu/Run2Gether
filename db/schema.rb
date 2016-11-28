@@ -15,8 +15,20 @@ ActiveRecord::Schema.define(version: 20161128065742) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "moods", force: :cascade do |t|
+    t.string   "name",             null: false
+    t.time     "mood_pace"
+    t.string   "mood_experience"
+    t.float    "desired_distance"
+    t.integer  "user_id",          null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["user_id"], name: "index_moods_on_user_id", using: :btree
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.text     "why_i_run"
+    t.time     "user_pace",           null: false
     t.text     "goals",               null: false
     t.string   "experience",          null: false
     t.text     "need_to_knows"
@@ -31,20 +43,20 @@ ActiveRecord::Schema.define(version: 20161128065742) do
   end
 
   create_table "runs", force: :cascade do |t|
-    t.string   "distance"
-    t.string   "run_time"
-    t.string   "run_pace"
+    t.float    "distance"
+    t.time     "run_time"
+    t.time     "run_pace"
     t.integer  "runner_id",        null: false
     t.integer  "companion_id"
     t.string   "run_date",         null: false
     t.integer  "time",             null: false
     t.integer  "zipcode"
-    t.float    "latitude",         null: false
-    t.float    "longitude",        null: false
+    t.integer  "mood_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.float    "desired_distance"
     t.index ["companion_id"], name: "index_runs_on_companion_id", using: :btree
+    t.index ["mood_id"], name: "index_runs_on_mood_id", using: :btree
     t.index ["runner_id"], name: "index_runs_on_runner_id", using: :btree
   end
 
@@ -52,9 +64,7 @@ ActiveRecord::Schema.define(version: 20161128065742) do
     t.string   "name",            null: false
     t.string   "email",           null: false
     t.string   "password_digest", null: false
-    t.integer  "zipcode",         null: false
-    t.float    "latitude",        null: false
-    t.float    "longitude",       null: false
+    t.string   "location",        null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
