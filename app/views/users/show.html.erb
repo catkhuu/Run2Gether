@@ -1,10 +1,5 @@
 <h3>My Google Maps Demo</h3>
 
-<!-- Replace the value of the key parameter with your own API key. -->
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0oxQo1-oxnPh0sy1KVpEb2EOsvF_ZII&callback=initMap">
-</script>
-
 <div id="rundown_container" class="rundown container center">
   <h1>The Rundown</h1>
 
@@ -15,17 +10,17 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0oxQo1-oxnPh0sy1KVpEb2E
 
   <div class="rundown-container">
 
-
-
     <%= render 'runs/run_search_button' %>
     <div class="run-form">
       <ul id="errors">
       </ul>
     </div>
-
-    <%= render 'upcoming_runs' %>
+    <div class="upcoming-table">
+      <%= render 'upcoming_runs' %>
+    </div>
 
     <%= render 'past_runs' %>
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0oxQo1-oxnPh0sy1KVpEb2EOsvF_ZII&callback=initMap">
+  </script>
   </div>
 </div>

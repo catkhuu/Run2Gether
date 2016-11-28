@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 20161128065742) do
   end
 
   create_table "runs", force: :cascade do |t|
-    t.string   "distance"
-    t.string   "run_time"
-    t.string   "run_pace"
+    t.float    "distance"
+    t.time     "run_time"
+    t.time     "run_pace"
     t.integer  "runner_id",        null: false
     t.integer  "companion_id"
     t.string   "run_date",         null: false

@@ -1,5 +1,5 @@
 $(function() {
-  $('#new-run-container').on('click', '#search-for-run-btn', function(event) {
+  $('#rundown_container').on('click', '#search-for-run-btn', function(event) {
     event.preventDefault();
     var $searchBtn = $(this);
     var route = $searchBtn.attr('href');
@@ -18,6 +18,41 @@ $(function() {
     })
   });
 
+  $('#rundown_container').on('click', '#start-new-run-btn', function(event) {
+    event.preventDefault();
+    var $createRunBtn = $(this);
+    var route = $createRunBtn.attr('href');
+    $.ajax({
+      url: route,
+      method: 'GET'
+    }).done(function(response) {
+     $('div.run-form').append(response);
+     hideButtons();
+     enableMaterialize();
+    })
+  });
+
+$('div.run-form').on('click','#create-run-btn',function(event){
+  event.preventDefault();
+  var data = $(this).parent().serialize();
+  var url = $(this).parent().attr('action');
+  var method = $(this).parent().attr('method');
+
+  $.ajax({
+    url: url,
+    method: method,
+    data: data
+  }).done(function(response){
+    $('.upcoming-table').replaceWith(response);
+  }).fail(function(jqXHR, TextStatus, status) {
+      var errors = $.parseJSON(jqXHR.responseText)
+      $.each(errors, function(index, value) {
+        $('#errors').append('<li>' + value + '</li>')
+      });
+    })
+
+})
+
   $('#rundown_container').on('click', '#find-partner-btn', function(event) {
     event.preventDefault();
     $('.new-search-form').hide();
@@ -30,7 +65,6 @@ $(function() {
       type: method,
       data: data
     }).done(function(response) {
-      debugger;
       alert(response); //Matt is handling the response from server along with partial
       $('.run-form').append(response);
     }).fail(function(jqXHR, TextStatus, status) {
@@ -56,7 +90,6 @@ $(function() {
     })
 
   })
-});
 });
 
 
