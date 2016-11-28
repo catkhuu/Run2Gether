@@ -5,31 +5,39 @@ class RunsController < ApplicationController
 
   def new
     @run = Run.new
-    render partial: 'runs/new_run', layout: false, locals: { run: @run }
+
   end
 
   def create
     @run = Run.new(run_params)
-    if @run.save
-    #   zipcode_list = retrieve_zipcodes_within_radius(@run.zipcode)
-    #   matchers = search_by_date_time(zipcode_list, @run)
-    #   flash[:success] = "Run saved."
-    #   render partial: 'runs/run', layout: false, locals: { run: @run }
-    # else
-    #   @errors = run.errors.full_messages
-    #   render 'new'
-    end
+    debugger
+      if @run.save
+        #   zipcode_list = retrieve_zipcodes_within_radius(@run.zipcode)
+        #   matchers = search_by_date_time(zipcode_list, @run)
+        #   flash[:success] = "Run saved."
+        #   render partial: 'runs/run', layout: false, locals: { run: @run }
+      flash[:success] = "Run saved."
+         redirect_to user_path(current_user.id)
+      else
+        #   @errors = run.errors.full_messages
+      render partial: 'runs/new_run', layout: false, locals: { run: @run }
+      end
   end
 
   def new_search
     if request.xhr?
       render 'new_search', layout: false
-    end 
+    end
   end
 
   def search
-     by_proximity_and_date = Run.near(current_user.zipcode, 100).where(run_date: params[:run_date])
-     search_results = by_proximity_and_date.select { |run| run.runner.narrow_by_experience(current_user) } #the User model method may or may not work
+
+      by_proximity_and_date = Run.near([current_user.latitude, current_user.longitude],1,:order => :distance)
+
+      search_results = by_proximity_and_date.select { |run| run.runner.profile.experience == current_user.profile.experience }
+      @final = search_results.select {|run| run.companion_id == nil}.sample
+      # render :json => @final.first
+      render 'users/_match', locals: { final: @final }
   end
 
   def show
@@ -39,6 +47,9 @@ class RunsController < ApplicationController
   end
 
   def update
+  end
+  def add_companion
+  p "worked"
   end
 
   private

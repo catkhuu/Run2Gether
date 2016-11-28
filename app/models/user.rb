@@ -12,7 +12,7 @@ class User < ApplicationRecord
   geocoded_by :zipcode
   after_validation :geocode
 
-  def narrow_by_experience(run_seeker)
-    self.profile.experience == run_seeker.profile.experience
-  end 
+  # def narrow_by_experience(run_seeker)
+  #   self.profile.experience == run_seeker.profile.experience
+  # end
 end

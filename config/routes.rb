@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  put '/add_companion' => 'runs#add_companion'
   get "/pages/:page" => "pages#show"
   get '/runs/search' => 'runs#search'
   get '/runs/new_search' => 'runs#new_search'

@@ -20,6 +20,7 @@ $(function() {
 
   $('#rundown_container').on('click', '#find-partner-btn', function(event) {
     event.preventDefault();
+    $('.new-search-form').hide();
     var $searchForm = $(this);
     var data = $searchForm.parent().serialize();
     var route = $searchForm.parent().attr('action');
@@ -29,7 +30,9 @@ $(function() {
       type: method,
       data: data
     }).done(function(response) {
+      debugger;
       alert(response); //Matt is handling the response from server along with partial
+      $('.run-form').append(response);
     }).fail(function(jqXHR, TextStatus, status) {
       var errors = $.parseJSON(jqXHR.responseText)
       $.each(errors, function(index, value) {
