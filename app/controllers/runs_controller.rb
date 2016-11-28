@@ -62,7 +62,7 @@ class RunsController < ApplicationController
   end
 
   def run_params
-    params.require(:run).permit(:run_date, :time, :zipcode, :mood_id, :runner_id)
+    params.require(:run).permit(:run_date, :time, :zipcode, :runner_id, :desired_distance)
   end
 
   def find_and_ensure_run
