@@ -5,23 +5,33 @@ class RunsController < ApplicationController
 
   def new
     @run = Run.new
-
+    if request.xhr?
+      render 'new', layout: false
+    end
   end
 
   def create
     @run = Run.new(run_params)
-    debugger
+    # debugger
       if @run.save
         #   zipcode_list = retrieve_zipcodes_within_radius(@run.zipcode)
         #   matchers = search_by_date_time(zipcode_list, @run)
         #   flash[:success] = "Run saved."
         #   render partial: 'runs/run', layout: false, locals: { run: @run }
-      flash[:success] = "Run saved."
-         redirect_to user_path(current_user.id)
+
+      # flash[:success] = "Run saved."
+         # redirect_to user_path(current_user.id)
+          users_runs = Run.all.select { |run| run.runner_id == current_user.id ||      run.companion_id == current_user.id }
+
+          @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
+
+      if request.xhr?
+        render partial: 'users/upcoming_runs', layout: false, locals: {upcoming_runs: @upcoming_runs}
       else
-        #   @errors = run.errors.full_messages
-      render partial: 'runs/new_run', layout: false, locals: { run: @run }
+        @errors = @run.errors.full_messages.to_json
+        render :json => @errors
       end
+    end
   end
 
   def new_search
