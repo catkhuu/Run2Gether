@@ -20,6 +20,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    # user and match below need to be updated
+    user = User.first
+    match = User.third
+    @midpoint = find_midpoint(user, match)
     # binding.pry
     # runs_by_date = @user.runs.where("run_date > ?", DateTime.now)
     # results = {}
@@ -29,6 +33,7 @@ class UsersController < ApplicationController
 
   def edit
   end
+
 
   def update
 
@@ -43,7 +48,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :zipcode, :latitude, :longitude, :password, :password_confirmation)
     end
 
-    def find_midpoint(user_coord, result_coord)
-      midpoint = [(user_coord[0] + result_coord[0]) / 2 , (user_coord[1] + result_coord[1]) / 2 ]
+    def find_midpoint(user, match)
+      midpoint = [(user.latitude + match.latitude) / 2 , (user.longitude + match.longitude) / 2 ]
     end
 end
