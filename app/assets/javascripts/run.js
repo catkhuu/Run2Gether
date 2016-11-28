@@ -10,6 +10,11 @@ $(function() {
       $('div.run-form').append(response);
       enableMaterialize();
       hideButtons();
+    }).fail(function(jqXHR, TextStatus, status) {
+      var errors = $.parseJSON(jqXHR.responseText)
+      $.each(errors, function(index, value) {
+        $('#errors').append('<li>' + value + '</li>')
+      });
     })
   });
 
@@ -24,7 +29,12 @@ $(function() {
       type: method,
       data: data
     }).done(function(response) {
-      alert(response);
+      alert(response); //Matt is handling the response from server along with partial
+    }).fail(function(jqXHR, TextStatus, status) {
+      var errors = $.parseJSON(jqXHR.responseText)
+      $.each(errors, function(index, value) {
+        $('#errors').append('<li>' + value + '</li>')
+      });
     })
   })
 });
