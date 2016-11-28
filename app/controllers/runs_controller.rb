@@ -24,7 +24,7 @@ class RunsController < ApplicationController
   def new_search
     if request.xhr?
       render 'new_search', layout: false
-    end 
+    end
   end
 
   def search
@@ -39,6 +39,19 @@ class RunsController < ApplicationController
   end
 
   def update
+
+  end
+
+  def add_companion
+    binding.pry
+    if run = Run.where(id: params[:run_id]).update(companion_id: current_user.id)
+      success = { success: "Run added to your upcoming runs. Enjoy your run with #{run[0].runner.name}" }.to_json
+      render :json => success
+      # render some partial to update the current_user's view
+    else
+      error = { fail: 'Update unsuccessful. Try again.' }.to_json
+      render :json => error
+    end
   end
 
   private

@@ -4,6 +4,7 @@
   <div class="rundown-container">
 
     <%= render 'map' %>
+    <%= button_to "Accept", add_companion_path, method: 'PATCH' , class: "accept-run-btn", id: "<%= current_user.id %>", data: "<%= current_user.id %>" %>
 
     <%= render 'runs/run_search_button' %>
     <div class="run-form">
