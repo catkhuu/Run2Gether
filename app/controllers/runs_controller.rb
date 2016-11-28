@@ -58,10 +58,28 @@ class RunsController < ApplicationController
     end
   end
 
+  def edit_stats
+    @run = Run.find_by(id: params[:run_id])
+  end
+
+  def update_stats
+    @run = Run.find_by(id: params[:run_id])
+    if @run.update(stats_params)
+      redirect_to user_path(@run.runner_id)
+    else
+      render 'edit_stats'
+    end
+  end
+
+
   private
 
+  def stats_params
+    params.require(:run).permit(:distance, :run_time, :run_pace)
+  end
+
   def run_params
-    params.require(:run).permit(:run_date, :time, :zipcode, :mood_id, :runner_id)
+    params.require(:run).permit(:run_date, :time, :zipcode, :runner_id, :desired_distance)
   end
 
   def find_and_ensure_run

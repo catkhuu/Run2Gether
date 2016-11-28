@@ -1,9 +1,21 @@
+<h3>My Google Maps Demo</h3>
+
+<!-- Replace the value of the key parameter with your own API key. -->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0oxQo1-oxnPh0sy1KVpEb2EOsvF_ZII&callback=initMap">
+</script>
+
 <div id="rundown_container" class="rundown container center">
   <h1>The Rundown</h1>
 
+  <%= render 'map', locals: {midpoint: @midpoint}%>
+
+  <%= content_tag :div, class: "mid", data: {midpoint: @midpoint} do %>
+  <% end %>
+
   <div class="rundown-container">
 
-    <%= render 'map' %>
+
 
     <%= render 'runs/run_search_button' %>
     <div class="run-form">
@@ -11,9 +23,7 @@
       </ul>
     </div>
 
-    <div class='upcoming-runs-list'>
-
-    </div>
+    <%= render 'upcoming_runs' %>
 
     <%= render 'past_runs' %>
 
