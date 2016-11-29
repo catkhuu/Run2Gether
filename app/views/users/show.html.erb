@@ -6,8 +6,7 @@
 
   <%= content_tag :div, class: "mid", data: {meetingpoint: @meetingpoint} do %>
   <% end %>
-</div>
-
+  </div>
   <div class="my-rundown-container">
 
     <%= render 'runs/run_search_button' %>
@@ -18,8 +17,9 @@
     <div class="upcoming-table">
       <%= render 'upcoming_runs' %>
     </div>
-
-    <%= render 'past_runs' %>
+    <div class="past-run-table">
+      <%= render 'past_runs' %>
+    </div>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0oxQo1-oxnPh0sy1KVpEb2EOsvF_ZII&callback=initMap">
   </script>
   </div>
