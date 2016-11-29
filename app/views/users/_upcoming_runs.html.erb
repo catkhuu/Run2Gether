@@ -15,7 +15,8 @@
         <td><%=run.desired_distance %></td>
         <% if run.companion %>
           <% if run.runner_id == current_user.id %>
-            <td><%= link_to "#{run.companion.name}", user_profile_path(run.companion_id, run.companion.profile.id) %></td>
+            <td ><%= link_to "#{run.companion.name}", user_profile_path(run.companion_id, run.companion.profile.id) %></td>
+            <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">Hover me!</a>
           <% elsif run.companion_id == current_user.id %>
             <td><%= link_to "#{run.runner.name}", user_profile_path(run.runner_id, run.runner.profile.id)%></td>
           <% end %>
