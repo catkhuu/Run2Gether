@@ -42,7 +42,6 @@ class RunsController < ApplicationController
 
   def search
       by_proximity_and_date = Run.near([current_user.latitude, current_user.longitude],1,:order => :distance)
-
       search_results = by_proximity_and_date.select { |run| run.runner.profile.experience == current_user.profile.experience }
       @final = search_results.select {|run| run.companion_id == nil}.sample
       # render :json => @final.first
@@ -61,7 +60,7 @@ class RunsController < ApplicationController
     if run = Run.where(id: params[:run_id]).update(companion_id: current_user.id)
       success = { success: "Run added to your upcoming runs. Enjoy your run with #{run[0].runner.name}" }.to_json
       render :json => success
-
+# fix this 
     else
       error = { fail: 'Update unsuccessful. Try again.' }.to_json
       render :json => error

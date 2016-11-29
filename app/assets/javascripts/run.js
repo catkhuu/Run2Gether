@@ -34,6 +34,8 @@ $(function() {
 
 $('div.run-form').on('click','#create-run-btn',function(event){
   event.preventDefault();
+
+  $(this).parent().remove();
   var data = $(this).parent().serialize();
   var url = $(this).parent().attr('action');
   var method = $(this).parent().attr('method');
@@ -44,6 +46,7 @@ $('div.run-form').on('click','#create-run-btn',function(event){
     data: data
   }).done(function(response){
     $('.upcoming-table').replaceWith(response);
+    showButtons();
   }).fail(function(jqXHR, TextStatus, status) {
       var errors = $.parseJSON(jqXHR.responseText)
       $.each(errors, function(index, value) {
@@ -97,6 +100,10 @@ $('div.run-form').on('click','#create-run-btn',function(event){
 function hideButtons() {
   $('#start-new-run-btn').hide();
   $('#search-for-run-btn').hide();
+}
+function showButtons() {
+  $('#start-new-run-btn').show();
+  $('#search-for-run-btn').show();
 }
 
 function enableMaterialize() {
