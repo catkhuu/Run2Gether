@@ -3,7 +3,7 @@ class Run < ApplicationRecord
   belongs_to :companion, foreign_key: :companion_id, class_name: :User, optional: true
   validates :runner_id, :run_date, :time, :zipcode, presence: true
   geocoded_by :zipcode
-  after_validation :geocode
+  before_validation :geocode
 
   def converted_date
     DateTime.parse(self.run_date)

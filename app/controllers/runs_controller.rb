@@ -1,8 +1,7 @@
 class RunsController < ApplicationController
   include RunsHelper
   before_action :sanitize_params, only: [:create, :update]
-  # before_action :find_and_ensure_run, only: [:upvote, :declines]
-
+  
   def new
     @run = Run.new
     if request.xhr?
@@ -11,19 +10,15 @@ class RunsController < ApplicationController
   end
 
   def create
+
+#FIXME: test create run. if save and ajax request, then render upcoming runs partial. If it did not save, but is an ajax request, then re-render the new run form, layout false, and pass errors as locals along with @run = Run.new
+
+#FIXME: if the run is not an ajax request, but it saved, then redirect to the rundown. If it didn't save, and isn't ajax, then pass @errors and re render the new run form.
+
     @run = Run.new(run_params)
-    # debugger
-      if @run.save
-        #   zipcode_list = retrieve_zipcodes_within_radius(@run.zipcode)
-        #   matchers = search_by_date_time(zipcode_list, @run)
-        #   flash[:success] = "Run saved."
-        #   render partial: 'runs/run', layout: false, locals: { run: @run }
-
-      # flash[:success] = "Run saved."
-         # redirect_to user_path(current_user.id)
-          users_runs = Run.all.select { |run| run.runner_id == current_user.id ||      run.companion_id == current_user.id }
-          @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
-
+    if @run.save
+      users_runs = Run.all.select { |run| run.runner_id == current_user.id ||      run.companion_id == current_user.id }
+      @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
       if request.xhr?
         render partial: 'users/upcoming_runs', layout: false, locals: {upcoming_runs: @upcoming_runs}
       else
@@ -63,7 +58,6 @@ class RunsController < ApplicationController
   def update
   end
   def add_companion
-    binding.pry
     if run = Run.where(id: params[:run_id]).update(companion_id: current_user.id)
       users_runs = Run.all.select { |run| run.runner_id == current_user.id || run.companion_id == current_user.id }
       @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }

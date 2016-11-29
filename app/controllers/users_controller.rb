@@ -24,10 +24,13 @@ class UsersController < ApplicationController
     users_runs = Run.all.select { |run| run.runner_id == current_user.id || run.companion_id == current_user.id }
     @past_runs = users_runs.select { |run| run.converted_date < DateTime.now }
     @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
-    # user and match below need to be updated
-    user = User.first
-    match = User.second
-    @midpoint = find_midpoint(user, match)
+    if @upcoming_runs.empty? || @upcoming_runs.first.companion_id == nil
+      @meeting_point = [current_user.latitude, current_user.longitude]
+    else
+      user = current_user
+      next_run = @upcoming_runs.first
+      @midpoint = [@upcoming_runs.first.latitude, @upcoming_runs.first.longitude]
+    end
   end
 
   def edit
@@ -47,7 +50,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :zipcode, :latitude, :longitude, :password, :password_confirmation)
     end
 
-    def find_midpoint(user, match)
-      midpoint = [(user.latitude + match.latitude) / 2 , (user.longitude + match.longitude) / 2 ]
+    def find_midpoint(user, next_run)
+      midpoint = [(user.latitude + next_run.latitude) / 2 , (user.longitude + next_run.longitude) / 2 ]
     end
 end
