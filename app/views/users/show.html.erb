@@ -1,12 +1,13 @@
 
 <div id="rundown_container" class="rundown container center">
-  <h1>The Rundown</h1>
+  <div class='map-container'>
+    <h1>The Rundown</h1>
 
-  <%= render 'map', locals: {meeting_point: @meeting_point}%>
+    <%= render 'map', locals: {meeting_point: @meeting_point}%>
 
-  <%= content_tag :div, class: "mid", data: {meeting_point: @meeting_point} do %>
-  <% end %>
-
+    <%= content_tag :div, class: "mid", data: {meeting_point: @meeting_point} do %>
+    <% end %>
+  </div>
   <div class="my-rundown-container">
 
     <%= render 'runs/run_search_button' %>
@@ -17,8 +18,9 @@
     <div class="upcoming-table">
       <%= render 'upcoming_runs' %>
     </div>
-
-    <%= render 'past_runs' %>
+    <div class="past-run-table">
+      <%= render 'past_runs' %>
+    </div>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW0oxQo1-oxnPh0sy1KVpEb2EOsvF_ZII&callback=initMap">
   </script>
   </div>

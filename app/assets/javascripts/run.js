@@ -12,6 +12,8 @@ $(function() {
       hideUpcoming();
       hideMatchCard();
       hideButtons();
+      hideMap();
+      showMap();
     }).fail(function(jqXHR, TextStatus, status) {
       var errors = $.parseJSON(jqXHR.responseText)
       $.each(errors, function(index, value) {
@@ -33,6 +35,7 @@ $(function() {
      hideMatchCard();
       hideUpcoming();
       hideButtons();
+      showMap();
     })
   });
 
@@ -50,6 +53,7 @@ $('div.run-form').on('click','#create-run-btn',function(event){
   }).done(function(response){
     $('.upcoming-table').replaceWith(response);
      enableMaterialize();
+     removeNewRunForm();
       showUpcoming();
       showButtons();
   }).fail(function(jqXHR, TextStatus, status) {
@@ -76,6 +80,7 @@ $('div.run-form').on('click','#create-run-btn',function(event){
  //Matt is handling the response from server along with partial
       showButtons();
       hideUpcoming();
+      hideMatchCard();
       $('.run-form').append(response);
     }).fail(function(jqXHR, TextStatus, status) {
       var errors = $.parseJSON(jqXHR.responseText)
@@ -109,6 +114,12 @@ $('div.run-form').on('click','#create-run-btn',function(event){
   })
 });
 
+function hideMap(){
+  $('.map-container').hide();
+}
+function showMap(){
+  $('.map-container').show();
+}
 
 function hideButtons() {
   $('#start-new-run-btn').hide();
@@ -126,13 +137,19 @@ function showRundown () {
 }
 function hideUpcoming(){
   $('.upcoming-table').hide();
+  $(".past-run-table").hide();
+
 }
 function showUpcoming(){
   $('.upcoming-table').show();
+  $(".past-run-table").show();
 }
 
 function hideMatchCard(){
   $('.match-card').hide();
+}
+function removeNewRunForm(){
+  $('#new-run-form').remove();
 }
 
 function enableMaterialize() {
