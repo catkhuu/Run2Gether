@@ -10,15 +10,14 @@ function initMap() {
   });
 }
 
+
+$('#rundown_container').on('click', '.my-accept-run-btn', initMap);
+
 // $( document ).ready(function(){
 //   var middle = $('.mid').data('midpoint')
 //   $('#rundown_container').on('click', 'accept', function(event){
 //     event.preventDefault();
 //     var route = $(this).closest('SOMETHING')
-//
-//
-//
-//
 //   })
 //   $.ajax({
 //     url: route,

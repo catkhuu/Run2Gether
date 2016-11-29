@@ -23,15 +23,13 @@ class UsersController < ApplicationController
     users_runs = Run.all.select { |run| run.runner_id == current_user.id || run.companion_id == current_user.id }
     @past_runs = users_runs.select { |run| run.converted_date < DateTime.now }
     @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
-    # user and match below need to be updated
-    user = User.first
-    match = User.second
-    @midpoint = find_midpoint(user, match)
-    # binding.pry
-    # runs_by_date = @user.runs.where("run_date > ?", DateTime.now)
-    # results = {}
-    # runs_by_date.each { |run| results[run] = Time.at(run.time).utc.strftime('%H:%M:%S').in_time_zone("Eastern Time (US & Canada)") } #can we find the differnce between the date that line 27 returns and add the difference to the time objects?
-    # @upcoming_runs = results.select { |k, v| v < DateTime.now }.keys #this might have to be reversed with the greater_than or less_than operator
+    if @upcoming_runs.empty? || @upcoming_runs.first.companion_id == nil
+      @midpoint = [current_user.latitude, current_user.longitude]
+    else
+      user = current_user
+      next_run = @upcoming_runs.first
+      @midpoint = find_midpoint(user, next_run)
+    end
   end
 
   def edit
@@ -51,7 +49,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :zipcode, :latitude, :longitude, :password, :password_confirmation)
     end
 
-    def find_midpoint(user, match)
-      midpoint = [(user.latitude + match.latitude) / 2 , (user.longitude + match.longitude) / 2 ]
+    def find_midpoint(user, next_run)
+      midpoint = [(user.latitude + next_run.latitude) / 2 , (user.longitude + next_run.longitude) / 2 ]
     end
 end

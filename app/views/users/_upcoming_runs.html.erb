@@ -9,7 +9,7 @@
         <th>Companion</th>
       </tr>
       <% @upcoming_runs.each do |run| %>
-      <tr>
+      <tr id="<%=run.companion_id%>" class="matched-run">
         <td><%= run.run_date %></td>
         <td><%= run.zipcode %></td>
         <td><%=run.desired_distance %></td>
