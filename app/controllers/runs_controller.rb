@@ -59,7 +59,6 @@ class RunsController < ApplicationController
   end
   def add_companion
 
-
     if run = Run.where(id: params[:run_id]).update(companion_id: current_user.id)
       # success = { success: "Run added to your upcoming runs. Enjoy your run with #{run[0].runner.name}" }.to_json
       users_runs = Run.all.select { |run| run.runner_id == current_user.id ||run.companion_id == current_user.id }
@@ -74,7 +73,6 @@ class RunsController < ApplicationController
       end
 # fix this
     else
-      debugger
       error = { fail: 'Update unsuccessful. Try again.' }.to_json
       render :json => error
     end
