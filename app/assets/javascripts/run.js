@@ -89,7 +89,6 @@ $('div.run-form').on('click','#create-run-btn',function(event){
     var stringData = $acceptBtn.attr('id');
     var data = parseInt(stringData)
     $(this).parent().parent().parent().parent().hide();
-    debugger;
     $.ajax({
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       url: route,

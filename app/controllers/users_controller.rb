@@ -27,7 +27,6 @@ class UsersController < ApplicationController
     user = User.first
     match = User.second
     @midpoint = find_midpoint(user, match)
-    # binding.pry
     # runs_by_date = @user.runs.where("run_date > ?", DateTime.now)
     # results = {}
     # runs_by_date.each { |run| results[run] = Time.at(run.time).utc.strftime('%H:%M:%S').in_time_zone("Eastern Time (US & Canada)") } #can we find the differnce between the date that line 27 returns and add the difference to the time objects?

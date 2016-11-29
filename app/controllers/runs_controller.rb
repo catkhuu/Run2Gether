@@ -12,7 +12,7 @@ class RunsController < ApplicationController
 
   def create
     @run = Run.new(run_params)
-    # debugger
+
       if @run.save
         #   zipcode_list = retrieve_zipcodes_within_radius(@run.zipcode)
         #   matchers = search_by_date_time(zipcode_list, @run)
