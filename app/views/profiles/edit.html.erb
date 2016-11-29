@@ -19,7 +19,15 @@
         <%= f.select :experience, ['Beginner', 'Intermediate', 'Advanced', 'Competitive'] %>
       </div>
       <div class="col s5">
-        Change Profile Picture: <%= f.file_field :avatar %>
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>Browse</span>
+            <input type="file" name="profile[avatar]" >
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload Profile Picture">
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">

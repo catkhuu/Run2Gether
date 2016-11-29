@@ -26,9 +26,12 @@
    margin-bottom: 50px;
   }
 
- .profile-pic {
-   min-width: 50%;
+ img.profile-pic {
+   min-width: 5%;
    min-height: 60%;
+   max-width: 9%;
+   max-height: 90%;
+
  }
 
  div.profile-pic {

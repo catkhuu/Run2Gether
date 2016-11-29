@@ -16,38 +16,28 @@
   </head>
 
   <body>
-    <ul id="slide-out" class="side-nav">
-    <li><div class="userView">
-      <div class="background">
-        <img src="">
-      </div>
-    <% if logged_in? %>
-    <% if current_user.profile != nil %>
-      <div class="container profile-pic">
-        <%= image_tag current_user.profile.avatar.url(:thumb), class: "circle profile-pic"%>
-      </div><br />
-
-      <%= link_to current_user.name , user_profile_path(current_user, current_user.profile), class: "container center" %>
-    <% end %>
-
-      <p class="container center"><%= current_user.email %></p>
-
-    </div></li>
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "The Rundown", user_path(current_user) %></li>
-      <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
-      <li><div class="divider"></div></li>
-    <% else %>
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Register", new_user_path %></li>
-      <li><%= link_to "Login", new_session_path %></li>
-    <% end %>
-
-  </ul>
+   <nav>
+    <div class="nav-wrapper fixed">
+      <a href="root_path" class="brand-logo center">Run2gether</a>
+      <% if logged_in? %>
+        <a> <%= image_tag current_user.profile.avatar.url(:thumb), class: "circle profile-pic right"%></a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
+          <li><%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%></li>
+          <li><a href="link.tbd">About R2G</a></li>
+          <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
+        </ul>
+      <% else %>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><%= link_to "Register", new_user_path %></li>
+          <li><%= link_to "Login", new_session_path %></li>
+          <li><a href="link.tbd">About R2G</a></li>
+        </ul>
+      <% end %>
+    </div>
+  </nav>
 
 
-
-  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
     <div class="notice"><%= flash[:success] %></div>
     <div class="alert"><%= flash[:danger] %></div>
     <%= yield %>
