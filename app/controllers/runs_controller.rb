@@ -22,7 +22,6 @@ class RunsController < ApplicationController
       # flash[:success] = "Run saved."
          # redirect_to user_path(current_user.id)
           users_runs = Run.all.select { |run| run.runner_id == current_user.id ||      run.companion_id == current_user.id }
-
           @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
 
       if request.xhr?
@@ -41,11 +40,19 @@ class RunsController < ApplicationController
   end
 
   def search
-      by_proximity_and_date = Run.near([current_user.latitude, current_user.longitude],1,:order => :distance)
+    binding.pry
+      temp_run = Run.create(run_params) # this should not save due to invalid time conversion. We only want the latitude and longitude of the user's search params.
+      by_proximity_and_date = Run.near([temp_run.latitude, temp_run.longitude],1,:order => :distance)
       search_results = by_proximity_and_date.select { |run| run.runner.profile.experience == current_user.profile.experience }
       @final = search_results.select {|run| run.companion_id == nil}.sample
-      # render :json => @final.first
-      render 'users/_match', locals: { final: @final }
+
+      #FIXME: render this partial if @final contains a single match
+
+      render 'users/_match', locals: { final: @final }, layout: false
+      # we also need to make sure the img tag for the card has a max and min height and width. Otherwise, the default image takes up half the screen.
+
+      # FIXME: render sorry message if @final is an empty array
+
   end
 
   def show
@@ -57,10 +64,12 @@ class RunsController < ApplicationController
   def update
   end
   def add_companion
+    binding.pry
     if run = Run.where(id: params[:run_id]).update(companion_id: current_user.id)
-      success = { success: "Run added to your upcoming runs. Enjoy your run with #{run[0].runner.name}" }.to_json
-      render :json => success
-# fix this 
+      users_runs = Run.all.select { |run| run.runner_id == current_user.id || run.companion_id == current_user.id }
+      @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
+      render partial: 'users/upcoming_runs', layout: false, locals: {upcoming_runs: @upcoming_runs}
+# fix this
     else
       error = { fail: 'Update unsuccessful. Try again.' }.to_json
       render :json => error

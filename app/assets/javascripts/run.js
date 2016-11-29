@@ -68,7 +68,6 @@ $('div.run-form').on('click','#create-run-btn',function(event){
       type: method,
       data: data
     }).done(function(response) {
-      alert(response); //Matt is handling the response from server along with partial
       $('.run-form').append(response);
     }).fail(function(jqXHR, TextStatus, status) {
       var errors = $.parseJSON(jqXHR.responseText)
@@ -80,16 +79,16 @@ $('div.run-form').on('click','#create-run-btn',function(event){
 
   $('#rundown_container').on('click', '.accept-run-btn', function(event) {
     event.preventDefault();
-    var $acceptBtn = $(this)
-    var route = $acceptBtn.parent().attr('action');
-    var runId = $acceptBtn.attr('data');
-    var data = { run_id: runId }
+    var $acceptBtn = $(this).find('a');
+    var route = $acceptBtn.attr('href');
+    // var runId = $acceptBtn.attr('data');
+    // var data = { run_id: runId }
     $.ajax({
       url: route,
-      method: 'POST', //POST for now, but will be a PATCH
-      data: data
+      method: 'PUT'
     }).done(function(response) {
       alert(response);
+      $('div.upcoming-runs-table').replaceWith(response);
     })
 
   })

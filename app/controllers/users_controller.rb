@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       flash[:success] = "You're almost there! Please tell us a little more about yourself." # This needs to be styled, otherwise, let's remove it
       redirect_to new_user_profile_path(user)
     else
+      @user = User.new
       @errors = user.errors.full_messages
       render 'new'
     end
