@@ -1,15 +1,45 @@
-<div class="container">
+<div class="container create-profile-form">
+  <div class="row">
+  <div class="col s10">
   <h1><%=current_user.name%>'s Profile</h1>
   <%= form_for :profile, url: { action: "create" }, html: { multipart: true }  do |f| %>
-    Avatar:<%= f.file_field :avatar %>
-    Why I Run: <%= f.text_field :why_i_run, placeholder:"In a few words, tell us what motivates you and keeps you running!" %>
-    Goals: <%= f.text_field :goals, placeholder: "In a few words, tell us your running goals!"%>
-    Experience Level: <br /><br />
+    <div class="row">
+      <div class="col s10">
+        Why I Run: <%= f.text_field :why_i_run, placeholder:"In a few words, tell us what motivates you and keeps you running!" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s10">
+        Goals: <%= f.text_field :goals, placeholder: "In a few words, tell us your running goals!"%>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s5">
+        Experience Level:
       <%= f.select :experience, ['Beginner', 'Intermediate', 'Advanced', 'Competitive'] %>
-    <br />
-
-    Need To Knows: <%= f.text_field :need_to_knows, placeholder: "Is there anything important you'd want a potential running partner to know (i.e. injuries, allergies, etc.)" %>
-    <%= f.submit "Create Profile", :class => "waves-effect waves-light btn #00acc1 cyan darken-1" %>
-
+      </div>
+      <div class="col s5">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>Upload Profile Picture</span>
+              <input type="file">
+          </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="file" name="profile[avatar]" id="profile_avatar">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s10">
+        Need To Knows: <%= f.text_field :need_to_knows, placeholder: "Is there anything important you'd want a potential running partner to know (i.e. injuries, allergies, etc.)" %>
+      </div>
+    </div>
+    <div class="row create-profile-btn">
+      <div class="col s5" id="create-profile-btn">
+        <%= f.submit "Create Profile", :class => "waves-effect waves-light btn #00acc1 cyan darken-1" %>
+      </div>
+    </div>
   <% end %>
+  </div>
+  </div>
 </div>
