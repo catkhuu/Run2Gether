@@ -2,9 +2,9 @@
 <div id="rundown_container" class="rundown container center">
   <h1>The Rundown</h1>
 
-  <%= render 'map', locals: {midpoint: @midpoint}%>
+  <%= render 'map', locals: {midpoint: @meeting_point}%>
 
-  <%= content_tag :div, class: "mid", data: {midpoint: @midpoint} do %>
+  <%= content_tag :div, class: "mid", data: {midpoint: @meeting_point} do %>
   <% end %>
 
   <div class="rundown-container">

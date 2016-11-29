@@ -24,11 +24,11 @@ class UsersController < ApplicationController
     @past_runs = users_runs.select { |run| run.converted_date < DateTime.now }
     @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
     if @upcoming_runs.empty? || @upcoming_runs.first.companion_id == nil
-      @midpoint = [current_user.latitude, current_user.longitude]
+      @meeting_point = [current_user.latitude, current_user.longitude]
     else
       user = current_user
       next_run = @upcoming_runs.first
-      @midpoint = find_midpoint(user, next_run)
+      @midpoint = [@upcoming_runs.first.latitude, @upcoming_runs.first.longitude]
     end
   end
 
