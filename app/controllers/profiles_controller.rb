@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   include ProfilesHelper
-  before_action :logged_in_user, :find_and_ensure_user, :correct_user
+  before_action :logged_in_user, :find_and_ensure_user
+  before_action :correct_user, only: [:edit, :update]
   before_action :find_and_ensure_profile, only: [:show, :edit, :update]
   before_action :sanitize_profile_params, only: [:create, :update]
 
@@ -42,7 +43,7 @@ class ProfilesController < ApplicationController
     end
 
     def find_and_ensure_profile
-      render 'application/error_404' unless @profile = current_user.profile
+      render 'application/error_404' unless @profile = Profile.find_by(id: params[:id])
     end
 
     def sanitize_profile_params
