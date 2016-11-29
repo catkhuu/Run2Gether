@@ -7,7 +7,7 @@ experience_options = ['Beginner', 'Intermediate','Advanced', 'Competitive']
   User.create!( name: Faker::Name.first_name,
                 email: Faker::Internet.email,
                 password: 'password',
-                zipcode: random[0],
+                zipcode: zips.sample,
                 password_confirmation: 'password')
   end
 
@@ -19,35 +19,36 @@ User.all.each do |user|
                     need_to_knows: Faker::Superhero.power)
                   end
 
-# future_runs = [Faker::Time.forward(30, :morning), Faker::Time.forward(30, :afternoon), Faker::Time.forward(30, :evening)]
+future_runs = [Faker::Time.forward(30, :morning), Faker::Time.forward(30, :afternoon), Faker::Time.forward(30, :evening)]
 
-# 250.times do
-#   runner = User.all.sample
-#   Run.create!(  distance: rand(2..15),
-#                 run_time: Faker::Time.forward(23, :morning),
-#                 run_pace: Faker::Time.forward(23, :morning),
-#                 runner: User.all.sample,
-#                 companion: User.all.sample,
-#                 run_date: future_runs.sample,
-#                 time: Faker::Time.forward(23, :morning),
-#                 zipcode: zips.sample)
-# end
-# #
-# previous_runs = [Faker::Time.backward(30, :morning), Faker::Time.backward(30, :afternoon), Faker::Time.backward(30, :evening)]
+25.times do
+  runner = User.all.sample
+  mood = Mood.where(user: runner).sample
+  Run.create!(  distance: rand(2..15),
+                run_time: Faker::Time.forward(23, :morning),
+                run_pace: Faker::Time.forward(23, :morning),
+                runner: User.all.sample,
+                companion: User.all.sample,
+                run_date: future_runs.sample,
+                time: Faker::Time.forward(23, :morning),
+                zipcode: zips.sample)
+end
 #
-# 250.times do
-#   runner = User.all.sample
-#   mood = Mood.where(user: runner).sample
-#   Run.create!(  distance: rand(2..15),
-#                 run_time: Faker::Time.backward(23, :morning),
-#                 run_pace: Faker::Time.forward(23, :morning),
-#                 runner: User.all.sample,
-#                 companion: User.all.sample,
-#                 run_date: previous_runs.sample,
-#                 time: Faker::Time.forward(23, :morning),
-#                 zipcode: zips.sample,
-#                 mood_id: mood)
-# end
+previous_runs = [Faker::Time.backward(30, :morning), Faker::Time.backward(30, :afternoon), Faker::Time.backward(30, :evening)]
+
+25.times do
+  runner = User.all.sample
+  mood = Mood.where(user: runner).sample
+  Run.create!(  distance: rand(2..15),
+                run_time: Faker::Time.backward(23, :morning),
+                run_pace: Faker::Time.forward(23, :morning),
+                runner: User.all.sample,
+                companion: User.all.sample,
+                run_date: previous_runs.sample,
+                time: Faker::Time.forward(23, :morning),
+                zipcode: zips.sample)
+end
+
 
 
 

@@ -1,17 +1,50 @@
 
 <div class="container">
-  <h1>Create an Account</h1>
-  <%= form_for @user do |f| %>
-  <%= render partial: 'application/errors', layout: false, locals: { errors: @errors } %>
-    Name: <%= f.text_field :name, placeholder:"My friends call me..." %>
-    Email: <%= f.text_field :email, placeholder: "Contact me at..."%>
-    Zip Code: <%= f.number_field :zipcode, placeholder: "Where I run..."%>
-    Password: <%= f.password_field :password, placeholder: "Password" %>
-    Confirm Password: <%= f.password_field :password_confirmation, placeholder: "One more time..." %>
-    <%= f.submit "Sign Up", :class => "waves-effect waves-light btn #00acc1 cyan darken-1" %>
+  <div class="row" id="new-user-form">
+    <div class="col s8">
+    <h3 class="center">Create an Account</h3>
+    <%= form_for @user do |f| %>
+    <%= render partial: 'application/errors', layout: false, locals: { errors: @errors } %>
+      <div class="row">
+      <div class="col s12">
+        Name: <%= f.text_field :name, placeholder:"My friends call me..." %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6">
+        Email: <%= f.text_field :email, placeholder: "Contact me at..."%>
+      </div>
+      <div class="col s6">
+      Zip Code: <%= f.number_field :zipcode, placeholder: "Where I run..."%>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col s6">
+        Password: <%= f.password_field :password, placeholder: "Password" %>
+        </div>
+        <div class="col s6">
+        Confirm Password: <%= f.password_field :password_confirmation, placeholder: "One more time..." %>
+      </div>
+    </div>
+  </div>
+  </div>
+
+    <div class="row center">
+      <%= f.submit "Sign Up", :class => "waves-effect waves-light btn #00acc1 cyan darken-1" %>
+    </div>
   <% end %>
 </div>
+
+
+
+
+
+
+
+
 <div class= "container">
-  <p> Already have an account? <%= link_to "Login here!", new_session_path%></p>
+  <div class="row">
+    <p class="center"> Already have an account? <%= link_to "Login here!", new_session_path%></p>
+  </div>
 </div>
