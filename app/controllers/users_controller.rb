@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    binding.pry
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    users_runs = Run.all.select { |run| run.runner_id == current_user.id || run.companion_id == current_user.id }
+    users_runs = Run.order('run_date DESC').select { |run| run.runner_id == current_user.id || run.companion_id == current_user.id }
     @past_runs = users_runs.select { |run| run.converted_date < DateTime.now }
     @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
     if @upcoming_runs.empty? || @upcoming_runs.first.companion_id == nil
