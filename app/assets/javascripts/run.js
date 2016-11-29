@@ -9,6 +9,8 @@ $(function() {
     }).done(function(response) {
       $('div.run-form').append(response);
       enableMaterialize();
+      hideUpcoming();
+      hideMatchCard();
       hideButtons();
     }).fail(function(jqXHR, TextStatus, status) {
       var errors = $.parseJSON(jqXHR.responseText)
@@ -27,8 +29,10 @@ $(function() {
       method: 'GET'
     }).done(function(response) {
      $('div.run-form').append(response);
-     hideButtons();
      enableMaterialize();
+     hideMatchCard();
+      hideUpcoming();
+      hideButtons();
     })
   });
 
@@ -39,14 +43,15 @@ $('div.run-form').on('click','#create-run-btn',function(event){
   var data = $(this).parent().serialize();
   var url = $(this).parent().attr('action');
   var method = $(this).parent().attr('method');
-
   $.ajax({
     url: url,
     method: method,
     data: data
   }).done(function(response){
     $('.upcoming-table').replaceWith(response);
-    showButtons();
+     enableMaterialize();
+      showUpcoming();
+      showButtons();
   }).fail(function(jqXHR, TextStatus, status) {
       var errors = $.parseJSON(jqXHR.responseText)
       $.each(errors, function(index, value) {
@@ -70,6 +75,7 @@ $('div.run-form').on('click','#create-run-btn',function(event){
     }).done(function(response) {
  //Matt is handling the response from server along with partial
       showButtons();
+      hideUpcoming();
       $('.run-form').append(response);
     }).fail(function(jqXHR, TextStatus, status) {
       var errors = $.parseJSON(jqXHR.responseText)
@@ -95,12 +101,13 @@ $('div.run-form').on('click','#create-run-btn',function(event){
       method: 'PUT', //POST for now, but will be a PATCH
       data: {'companion_id': data}
     }).done(function(response) {
+      hideMatchCard();
+      showUpcoming();
       $('.upcoming-table').replaceWith(response);
     })
 
   })
 });
-
 
 
 function hideButtons() {
@@ -110,6 +117,22 @@ function hideButtons() {
 function showButtons() {
   $('#start-new-run-btn').show();
   $('#search-for-run-btn').show();
+}
+function hideRundown () {
+  $('div.my-rundown-container').hide();
+}
+function showRundown () {
+  $('div.my-rundown-container').show();
+}
+function hideUpcoming(){
+  $('.upcoming-table').hide();
+}
+function showUpcoming(){
+  $('.upcoming-table').show();
+}
+
+function hideMatchCard(){
+  $('.match-card').hide();
 }
 
 function enableMaterialize() {
