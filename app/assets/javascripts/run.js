@@ -68,7 +68,8 @@ $('div.run-form').on('click','#create-run-btn',function(event){
       type: method,
       data: data
     }).done(function(response) {
-      alert(response); //Matt is handling the response from server along with partial
+ //Matt is handling the response from server along with partial
+      showButtons();
       $('.run-form').append(response);
     }).fail(function(jqXHR, TextStatus, status) {
       var errors = $.parseJSON(jqXHR.responseText)
@@ -77,19 +78,24 @@ $('div.run-form').on('click','#create-run-btn',function(event){
       });
     })
   });
-
-  $('#rundown_container').on('click', '.accept-run-btn', function(event) {
+// accept run button when match is found
+  $('.my-rundown-container').on('click', '.my-accept-run-btn', function(event) {
     event.preventDefault();
+
     var $acceptBtn = $(this)
-    var route = $acceptBtn.parent().attr('action');
-    var runId = $acceptBtn.attr('data');
-    var data = { run_id: runId }
+    var route = $acceptBtn.attr('href');
+    // var runId = $acceptBtn.attr('data');
+    // var data = { run_id: runId }
+    var stringData = $acceptBtn.attr('id');
+    var data = parseInt(stringData)
+    $(this).parent().parent().parent().parent().hide();
     $.ajax({
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       url: route,
-      method: 'POST', //POST for now, but will be a PATCH
-      data: data
+      method: 'PUT', //POST for now, but will be a PATCH
+      data: {'companion_id': data}
     }).done(function(response) {
-      alert(response);
+      $('.upcoming-table').replaceWith(response);
     })
 
   })

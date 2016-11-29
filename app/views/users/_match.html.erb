@@ -7,12 +7,12 @@
                 <%= @final.runner.name %>
               </span>
               <br>
-              <%= image_tag(@final.runner.profile.avatar)%>
+              <%= image_tag(@final.runner.profile.avatar.url(:thumb))%>
 
       </div>
             <div class="card-action">
 
-              <%= link_to "Accept", {action: :add_companion, :run_id => @final.id}, method: :put %>
+              <a href="/add_companion/<%= @final.id %>" method= 'put' class='my-accept-run-btn' id='<%= @final.runner_id %>'>Accept</a>
 
             </div>
           </div>

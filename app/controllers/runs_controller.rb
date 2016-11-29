@@ -12,7 +12,7 @@ class RunsController < ApplicationController
 
   def create
     @run = Run.new(run_params)
-    # debugger
+
       if @run.save
         #   zipcode_list = retrieve_zipcodes_within_radius(@run.zipcode)
         #   matchers = search_by_date_time(zipcode_list, @run)
@@ -26,6 +26,7 @@ class RunsController < ApplicationController
           @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
 
       if request.xhr?
+
         render partial: 'users/upcoming_runs', layout: false, locals: {upcoming_runs: @upcoming_runs}
       else
         @errors = @run.errors.full_messages.to_json
@@ -57,10 +58,20 @@ class RunsController < ApplicationController
   def update
   end
   def add_companion
+
     if run = Run.where(id: params[:run_id]).update(companion_id: current_user.id)
-      success = { success: "Run added to your upcoming runs. Enjoy your run with #{run[0].runner.name}" }.to_json
-      render :json => success
-# fix this 
+      # success = { success: "Run added to your upcoming runs. Enjoy your run with #{run[0].runner.name}" }.to_json
+      users_runs = Run.all.select { |run| run.runner_id == current_user.id ||run.companion_id == current_user.id }
+
+
+      @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
+
+      if request.xhr?
+        render partial: 'users/upcoming_runs', layout: false, locals: {upcoming_runs: @upcoming_runs}
+      else
+        p 'failed'
+      end
+# fix this
     else
       error = { fail: 'Update unsuccessful. Try again.' }.to_json
       render :json => error
