@@ -68,7 +68,7 @@ $('div.run-form').on('click','#create-run-btn',function(event){
       type: method,
       data: data
     }).done(function(response) {
-      alert(response); //Matt is handling the response from server along with partial
+ //Matt is handling the response from server along with partial
       $('.run-form').append(response);
     }).fail(function(jqXHR, TextStatus, status) {
       var errors = $.parseJSON(jqXHR.responseText)
@@ -77,19 +77,21 @@ $('div.run-form').on('click','#create-run-btn',function(event){
       });
     })
   });
-
+// accept run button when match is found
   $('#rundown_container').on('click', '.accept-run-btn', function(event) {
     event.preventDefault();
+    debugger
     var $acceptBtn = $(this)
     var route = $acceptBtn.parent().attr('action');
     var runId = $acceptBtn.attr('data');
     var data = { run_id: runId }
+
     $.ajax({
       url: route,
       method: 'POST', //POST for now, but will be a PATCH
       data: data
     }).done(function(response) {
-      alert(response);
+      $('.upcoming-table').replaceWith(response);
     })
 
   })
