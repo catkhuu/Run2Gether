@@ -25,11 +25,11 @@ class UsersController < ApplicationController
     @past_runs = users_runs.select { |run| run.converted_date < DateTime.now }
     @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
     if @upcoming_runs.empty? || @upcoming_runs.first.companion_id == nil
-      @meeting_point = [current_user.latitude, current_user.longitude]
+      @meetingpoint = [current_user.latitude, current_user.longitude]
     else
       user = current_user
       next_run = @upcoming_runs.first
-      @midpoint = [@upcoming_runs.first.latitude, @upcoming_runs.first.longitude]
+      @meetingpoint = [@upcoming_runs.first.latitude, @upcoming_runs.first.longitude]
     end
   end
 
@@ -41,6 +41,18 @@ class UsersController < ApplicationController
 
   end
 
+  def updatemap
+    @run = Run.find(params[:run_id])
+
+    @meetingpoint = [@run.latitude, @run.longitude]
+    if request.xhr?
+      # render partial: 'users/map', layout: false, locals: {meetingpoint: @meetingpoint}
+      render json: @meetingpoint
+    else
+      p 'error'
+    end
+  end
+
   private
     def find_and_ensure_user
       render 'application/error_404' unless @user = User.find_by(id: params[:id])
@@ -50,7 +62,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :zipcode, :latitude, :longitude, :password, :password_confirmation)
     end
 
-    def find_midpoint(user, next_run)
-      midpoint = [(user.latitude + next_run.latitude) / 2 , (user.longitude + next_run.longitude) / 2 ]
-    end
+    # def find_midpoint(user, next_run)
+    #   midpoint = [(user.latitude + next_run.latitude) / 2 , (user.longitude + next_run.longitude) / 2 ]
+    # end
 end
