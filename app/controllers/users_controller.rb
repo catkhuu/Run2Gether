@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       flash[:success] = "You're almost there! Please tell us a little more about yourself." # This needs to be styled, otherwise, let's remove it
       redirect_to new_user_profile_path(user)
     else
+      @user = User.new
       @errors = user.errors.full_messages
       render 'new'
     end
@@ -27,11 +28,6 @@ class UsersController < ApplicationController
     user = User.first
     match = User.second
     @midpoint = find_midpoint(user, match)
-    # binding.pry
-    # runs_by_date = @user.runs.where("run_date > ?", DateTime.now)
-    # results = {}
-    # runs_by_date.each { |run| results[run] = Time.at(run.time).utc.strftime('%H:%M:%S').in_time_zone("Eastern Time (US & Canada)") } #can we find the differnce between the date that line 27 returns and add the difference to the time objects?
-    # @upcoming_runs = results.select { |k, v| v < DateTime.now }.keys #this might have to be reversed with the greater_than or less_than operator
   end
 
   def edit

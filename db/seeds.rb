@@ -1,15 +1,14 @@
-zips = [[10002, 40.72001, -73.993787], [10003, 40.731251, -73.98922],  [10009, 40.726189, -73.979591],  [10463, 40.878948, -73.907277],  [10471, 40.913575, -73.908619]]
-
+zips = [10002, 10003, 10009, 10463, 10471, 10004, 10005, 10006, 10008]
 experience_options = ['Beginner', 'Intermediate','Advanced', 'Competitive']
 
-50.times do
-  random = zips.sample
-  User.create!( name: Faker::Name.first_name,
-                email: Faker::Internet.email,
-                password: 'password',
-                zipcode: random[0],
-                password_confirmation: 'password')
-  end
+# 50.times do
+#   random = zips.sample
+#   User.create!( name: Faker::Name.first_name,
+#                 email: Faker::Internet.email,
+#                 password: 'password',
+#                 zipcode: zips.sample,
+#                 password_confirmation: 'password')
+#   end
 
 User.all.each do |user|
   Profile.create!(  why_i_run: Faker::StarWars.quote,
@@ -20,9 +19,10 @@ User.all.each do |user|
                   end
 
 # future_runs = [Faker::Time.forward(30, :morning), Faker::Time.forward(30, :afternoon), Faker::Time.forward(30, :evening)]
-
-# 250.times do
+#
+# # 25.times do
 #   runner = User.all.sample
+#   mood = Mood.where(user: runner).sample
 #   Run.create!(  distance: rand(2..15),
 #                 run_time: Faker::Time.forward(23, :morning),
 #                 run_pace: Faker::Time.forward(23, :morning),
@@ -35,7 +35,7 @@ User.all.each do |user|
 # #
 # previous_runs = [Faker::Time.backward(30, :morning), Faker::Time.backward(30, :afternoon), Faker::Time.backward(30, :evening)]
 #
-# 250.times do
+# 25.times do
 #   runner = User.all.sample
 #   mood = Mood.where(user: runner).sample
 #   Run.create!(  distance: rand(2..15),
@@ -45,9 +45,9 @@ User.all.each do |user|
 #                 companion: User.all.sample,
 #                 run_date: previous_runs.sample,
 #                 time: Faker::Time.forward(23, :morning),
-#                 zipcode: zips.sample,
-#                 mood_id: mood)
+#                 zipcode: zips.sample)
 # end
+
 
 
 
