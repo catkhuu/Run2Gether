@@ -51,3 +51,14 @@ div.rundown {
 div.new-search-form {
   margin-left: 30%;
 }
+
+.errors {
+  color: red;
+  line-height: 1.5em;
+}
+
+ul#errors {
+  color: red;
+  line-height: 1.5em;
+  font-size: 12;
+}
