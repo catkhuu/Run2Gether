@@ -40,7 +40,7 @@
 
  img.profile-pic-show-view {
    max-width: 28%;
-   max-height: 
+   max-height:
    height: auto;
  }
 
@@ -61,4 +61,14 @@ ul#errors {
   color: red;
   line-height: 1.5em;
   font-size: 12;
+}
+
+@media screen and (min-width: 0px) and (max-width: 992px) {
+  #desktop-nav { display: none; }
+  #mobile-nav { display: block; }
+}
+
+@media screen and (min-width: 993px) and (max-width: 10000px) {
+  #mobile-nav { display: none; }
+  #desktop-nav { display: block; }
 }
