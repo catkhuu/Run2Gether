@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/about' => 'pages#about'
   put '/add_companion/:run_id' => 'runs#add_companion'
   post '/users/updatemap' => 'users#updatemap'
   get "/pages/:page" => "pages#show"
