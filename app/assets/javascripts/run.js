@@ -15,12 +15,7 @@ $('#rundown_container').on('click', '#search-for-run-btn', function(event) {
     hideButtons();
     hideMap();
     showMap();
-  }).fail(function(jqXHR, TextStatus, status) {
-    var errors = $.parseJSON(jqXHR.responseText);
-    $.each(errors, function(index, value) {
-      $('#errors').append('<li>' + value + '</li>');
-    });
-  });
+  })
 });
 
 // opens form for run creation
@@ -85,11 +80,9 @@ $('#rundown_container').on('click', '#find-partner-btn', function(event) {
     hideUpcoming();
     hideMatchCard();
     $('.run-form').append(response);
-  }).fail(function(jqXHR, TextStatus, status) {
-    var errors = $.parseJSON(jqXHR.responseText);
-    $.each(errors, function(index, value) {
-      $('#errors').append('<li>' + value + '</li>');
-    });
+  }).fail(function(response) {
+    showButtons();
+    $('#errors').append('<li>' + response.statusText + '</li>');
   });
 });
 // accept run button when match is found
