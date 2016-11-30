@@ -10,13 +10,11 @@ class RunsController < ApplicationController
   end
 
   def create
-    binding.pry
     @run = Run.new(run_params)
     if @run.save
       users_runs = Run.all.select { |run| run.runner_id == current_user.id ||      run.companion_id == current_user.id }
       @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
       if request.xhr?
-        binding.pry
         render partial: 'users/upcoming_runs', layout: false, locals: {upcoming_runs: @upcoming_runs}
       else
         @errors = @run.errors.full_messages.to_json

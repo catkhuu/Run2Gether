@@ -10,7 +10,6 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    binding.pry
     @profile = Profile.new(profile_params)
     if @profile.save
       redirect_to user_profile_path(@profile.user_id, @profile)
