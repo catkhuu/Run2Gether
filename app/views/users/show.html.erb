@@ -1,6 +1,12 @@
 
 <div id="rundown_container" class="rundown container center">
   <h1>The Rundown</h1>
+  <div class='home_info'>
+    <p>Home location</p>
+  </div>
+  <div class='location_info'>
+    <p>Next run location!</p>
+  </div>
   <div class="map-container container center-align">
     <%= render 'map', locals: {meetingpoint: @meetingpoint}%>
     <%= content_tag :div, class: "mid", data: {meetingpoint: @meetingpoint} do %>

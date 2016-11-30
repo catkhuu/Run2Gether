@@ -25,6 +25,6 @@ $('.button-collapse').sideNav({
 
 $('select').material_select();
 
-
+$('.location_info').hide();
 
 })
