@@ -25,6 +25,11 @@ $('.button-collapse').sideNav({
 
 $('select').material_select();
 
+
 $('.location_info').hide();
+
+$('.parallax').parallax();
+$('.carousel.carousel-slider').carousel({full_width: true});
+
 
 })
