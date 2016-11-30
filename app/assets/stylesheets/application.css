@@ -16,7 +16,7 @@
 
  body {
    height: 100%;
-   margin: 0;
+   margin: auto;
    padding: 0;
  }
 
@@ -52,14 +52,6 @@
    max-height:
    height: auto;
  }
-
-div.rundown {
-  margin-left: 20%;
-}
-
-div.new-search-form {
-  margin-left: 30%;
-}
 
 .errors {
   color: red;

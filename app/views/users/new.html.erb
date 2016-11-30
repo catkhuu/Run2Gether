@@ -1,21 +1,22 @@
-<div class="container" id="new-user-form">
-  <div class="col s10">
-    <h2 id="title-new-user">Create an Account</h2>
-    <%= form_for @user do |f| %>
-    <div class="row">
-      <div class="col s10">
-    <%= render partial: 'application/errors', layout: false, locals: { errors: @errors } %>
+<div class="new-user-form container" id="new-user-form">
+  <div class="row">
+    <div class="col s12">
+      <h1>Create an Account</h1>
+      <%= form_for @user do |f| %>
+      <div class="row">
+        <div class="col s12">
+          <%= render partial: 'application/errors', layout: false, locals: { errors: @errors } %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col s10">
-      Name: <%= f.text_field :name, placeholder:"My friends call me..." %>
+      <div class="row">
+        <div class="col s10">
+          Name: <%= f.text_field :name, placeholder:"My friends call me..." %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col s5">
+      <div class="row">
+        <div class="col s5">
         Email: <%= f.text_field :email, placeholder: "Contact me at..."%>
-      </div>
+        </div>
       <div class="col s5">
         Zip Code: <%= f.number_field :zipcode, placeholder: "Where I run..."%>
       </div>
@@ -34,8 +35,7 @@
       </div>
     </div>
     <% end %>
-
-      <p class="returning-user-link"> Already have an account? <%= link_to "Login here!", new_session_path%></p>
+    <p class="returning-user-link"> Already have an account? <%= link_to "Login here!", new_session_path%></p>
     </div>
   </div>
 </div>
