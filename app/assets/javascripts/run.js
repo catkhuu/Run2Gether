@@ -118,7 +118,6 @@ $(document).on('click','.clickable-row',function(event) {
     method: 'POST',
     data: {'run_id': runData}
   }).done(function(response) {
-    debugger;
     onRefresh(response);
     showLocationInfo();
   }).fail(function(jqXHR, TextStatus, status) {
