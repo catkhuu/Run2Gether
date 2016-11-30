@@ -24,7 +24,7 @@ class RunsController < ApplicationController
         @errors = @run.errors.full_messages.to_json
         render :json => @errors
       else
-        @errors = @run.errors
+        @errors = @run.errors.full_messages
         render 'new'
       end
     end
@@ -43,11 +43,19 @@ class RunsController < ApplicationController
     search_results = by_date.select { |run| run.runner.profile.experience == current_user.profile.experience }
 
     @final = search_results.select {|run| run.companion_id == nil && run.runner_id != current_user.id }.sample
-
     if @final
-      render 'users/_match', layout: false, locals: { final: @final }
+      if request.xhr?
+        render 'users/_match', layout: false, locals: { final: @final }
+      else
+        render 'users/_match', locals: { final: @final }
+      end
     else
-      render 'users/_no_match', layout: false
+      if request.xhr?
+        status 500
+      else
+        @errors = {my_error: 'Sorry we are experiencing techincal difficulties'}
+        render 'new_search'
+      end
     end
   end
 
@@ -69,8 +77,13 @@ class RunsController < ApplicationController
         redirect_to users_path(current_user.id)
       end
     else
-      error = { fail: 'Update unsuccessful. Try again.' }.to_json
+      if request.xhr?
+      @error = { fail: 'Update unsuccessful. Try again.' }.to_json
       render :json => error
+      else
+        @errors = @run.errors.full_messages
+        render 'new'
+      end
     end
   end
 
