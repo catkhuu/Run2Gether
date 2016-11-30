@@ -118,7 +118,9 @@ $(document).on('click','.clickable-row',function(event) {
     method: 'POST',
     data: {'run_id': runData}
   }).done(function(response) {
+    debugger;
     onRefresh(response);
+    showLocationInfo();
   }).fail(function(jqXHR, TextStatus, status) {
     var errors = $.parseJSON(jqXHR.responseText);
     $.each(errors, function(index, value) {
@@ -163,6 +165,10 @@ function hideMatchCard(){
 }
 function removeNewRunForm(){
   $('#new-run-form').remove();
+}
+function showLocationInfo(){
+  $('.location_info').show();
+  $('.home_info').hide();
 }
 function enableMaterialize() {
   $('.datepicker').pickadate({
