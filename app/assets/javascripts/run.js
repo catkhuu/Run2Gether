@@ -25,6 +25,7 @@ $(function() {
 
   $('#rundown_container').on('click', '#start-new-run-btn', function(event) {
     event.preventDefault();
+    $('.upcoming-runs-table').hide();
     var $createRunBtn = $(this);
     var route = $createRunBtn.attr('href');
     $.ajax({
@@ -42,17 +43,18 @@ $(function() {
 
 $('div.run-form').on('click','#create-run-btn',function(event){
   event.preventDefault();
-
-  $(this).parent().remove();
-  var data = $(this).parent().serialize();
-  var url = $(this).parent().attr('action');
-  var method = $(this).parent().attr('method');
+  var $form = $('#new-run-form').find('form');
+  $('#new-run-form').remove();
+  var data = $form.serialize();
+  var url = $form.attr('action');
+  var method = $form.attr('method');
   $.ajax({
     url: url,
     method: method,
     data: data
   }).done(function(response){
     $('.upcoming-table').replaceWith(response);
+    $('.upcoming-runs-table').show();
      enableMaterialize();
      removeNewRunForm();
       showUpcoming();
@@ -149,12 +151,12 @@ function showRundown () {
   $('div.my-rundown-container').show();
 }
 function hideUpcoming(){
-  $('.upcoming-table').hide();
+  $('.upcoming-runs-table').hide();
   $(".past-run-table").hide();
 
 }
 function showUpcoming(){
-  $('.upcoming-table').show();
+  $('.upcoming-runs-table').show();
   $(".past-run-table").show();
 }
 
