@@ -10,57 +10,54 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:400,700,900">
 <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+
   </head>
 
   <body>
-   <nav>
-    <div id="desktop-nav">
-      <div class="nav-wrapper fixed">
-        <a href="/" class="brand-logo center">Run2gether</a>
-
-        <% if logged_in?%>
+    <nav>
+    <div class="nav-wrapper #263238 blue-grey darken-4">
+      <a href="root_path" class="brand-logo">Run2Gether</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <% if logged_in?%>
           <% if current_user.profile %>
           <a><img src="<%= current_user.profile.avatar.url(:thumb) %>" class="circle profile-pic right"></a>
           <% else %>
             <a><img src="dinosaur.gif" class="circle profile-pic right"></a>
           <% end %>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
-            <% if current_user.profile %>
-            <li><%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%></li>
-            <% else %>
-            <li><%= link_to "#{current_user.name}'s Profile" , new_user_profile_path(current_user)%></li>
-            <% end %>
-            <li><%=link_to "About R2G", about_path %></li>
-            <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
-          </ul>
-        <% else %>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><%= link_to "Register", new_user_path %></li>
-            <li><%= link_to "Login", new_session_path %></li>
-            <li><%=link_to "About R2G", about_path %></li>
-          </ul>
-        <% end %>
-      </div>
-    </div>
-  </nav>
-  <!-- Mobile side nav -->
-  <div id="mobile-nav">
-    <ul id="slide-out" class="side-nav">
-      <li><div class="userView">
-        <% if logged_in?%>
+      <ul class="right hide-on-med-and-down">
+        <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
           <% if current_user.profile %>
-            <%= image_tag(current_user.profile.avatar.url(:thumb), :class => "mobile-pic") %>
-            <%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%>
-            <% else %>
+            <li><%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%></li>
+          <% else %>
             <li><%= link_to "#{current_user.name}'s Profile" , new_user_profile_path(current_user)%></li>
           <% end %>
-        </div></li>
-          <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
+        <li><%=link_to "About R2G", about_path %></li>
+        <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
+      </ul>
+      <% else %>
+        <ul class="right hide-on-med-and-down">
+          <li><%= link_to "Register", new_user_path %></li>
+          <li><%= link_to "Login", new_session_path %></li>
           <li><%=link_to "About R2G", about_path %></li>
+        </ul>
+      <% end %>
+
+      <ul class="side-nav" id="mobile-demo">
+        <li><div class="userView">
+        <% if logged_in?%>
+            <% if current_user.profile %>
+              <%= image_tag(current_user.profile.avatar.url(:thumb), :class => "mobile-pic") %>
+              <%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%>
+            <% else %>
+              <li><%= link_to "#{current_user.name}'s Profile" , new_user_profile_path(current_user)%></li>
+            <% end %>
+          </div></li>
+          <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
+          <li><a href="link.tbd">About R2G</a></li>
           <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
           <li><div class="divider"></div></li>
         <% else %>
@@ -68,17 +65,16 @@
           <li><%= link_to "Login", new_session_path %></li>
           <li><%=link_to "About R2G", about_path %></li>
         <% end %>
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-  </div>
-
+      </ul>
+    </div>
+  </nav>
 
     <div class="notice"><%= flash[:success] %></div>
     <div class="alert"><%= flash[:danger] %></div>
     <main>
     <%= yield %>
     </main>
-    <footer class='center page-footer #00acc1 cyan darken-1'>
+    <footer class='center page-footer #263238 blue-grey darken-4'>
       &copy;R2G &#8226; A DBC Final Project By: <a href='https://github.com/catkhuu'>Catherine Khuu</a> &#8226; <a href='https://www.github.com/lindsaymkelly'>Lindsay Kelly</a> &#8226; <a href='https://www.github.com/mattcritelli'>Matt Critelli</a> &#8226; <a href='https://github.com/Kndekaru/'>Miles McArdle-Coe</a>
     </footer>
   </body>
