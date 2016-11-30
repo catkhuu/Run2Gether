@@ -14,7 +14,12 @@
  *= require_self
  */
 
+html {
+
+}
+
  body {
+   font-family: 'Raleway', sans-serif;
    height: 100%;
    margin: auto;
    padding: 0;
@@ -32,6 +37,10 @@
    max-width: 9%;
    max-height: 90%;
 
+ }
+
+ nav {
+   font-weight: 900;
  }
 
  .mobile-pic {
@@ -69,6 +78,8 @@ footer {
   bottom: 0;
   width: 100%;
   height: 50px;
+  color: white;
+  font-weight: 700;
 }
 
 html {
@@ -83,11 +94,11 @@ body {
 
 footer a:link {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 footer a:visited {
-  color: black;
+  color: white;
 }
 
 @media screen and (min-width: 0px) and (max-width: 992px) {
