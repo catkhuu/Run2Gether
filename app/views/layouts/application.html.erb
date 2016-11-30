@@ -17,32 +17,56 @@
 
   <body>
    <nav>
-    <div class="nav-wrapper fixed">
-      <a href="root_path" class="brand-logo center">Run2gether</a>
+    <div id="desktop-nav">
+      <div class="nav-wrapper fixed">
+        <a href="root_path" class="brand-logo center">Run2gether</a>
 
-      <% if logged_in?%>
-        <% if current_user.profile %>
-        <a><img src="<%= current_user.profile.avatar.url(:thumb) %>" class="circle profile-pic right"></a>
-        <% else %>
-          <a><img src="dinosaur.gif" class="circle profile-pic right"></a>
-        <% end %>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
+        <% if logged_in?%>
           <% if current_user.profile %>
-          <li><%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%></li>
+          <a><img src="<%= current_user.profile.avatar.url(:thumb) %>" class="circle profile-pic right"></a>
+          <% else %>
+            <a><img src="dinosaur.gif" class="circle profile-pic right"></a>
           <% end %>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
+            <% if current_user.profile %>
+            <li><%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%></li>
+            <% end %>
+            <li><a href="link.tbd">About R2G</a></li>
+            <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
+          </ul>
+        <% else %>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><%= link_to "Register", new_user_path %></li>
+            <li><%= link_to "Login", new_session_path %></li>
+            <li><a href="link.tbd">About R2G</a></li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+  <!-- Mobile side nav -->
+  <div id="mobile-nav">
+    <ul id="slide-out" class="side-nav">
+      <li><div class="userView">
+        <% if logged_in?%>
+          <% if current_user.profile %>
+            <%= image_tag(current_user.profile.avatar.url(:thumb), :class => "center") %>
+            <%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%>
+          <% end %>
+        </div></li>
+          <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
           <li><a href="link.tbd">About R2G</a></li>
           <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
-        </ul>
-      <% else %>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><div class="divider"></div></li>
+        <% else %>
           <li><%= link_to "Register", new_user_path %></li>
           <li><%= link_to "Login", new_session_path %></li>
           <li><a href="link.tbd">About R2G</a></li>
-        </ul>
-      <% end %>
-    </div>
-  </nav>
+        <% end %>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
 
 
     <div class="notice"><%= flash[:success] %></div>
