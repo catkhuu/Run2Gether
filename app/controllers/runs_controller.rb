@@ -17,8 +17,15 @@ class RunsController < ApplicationController
       if request.xhr?
         render partial: 'users/upcoming_runs', layout: false, locals: {upcoming_runs: @upcoming_runs}
       else
+        redirect_to users_show_path(current_user)
+      end
+    else
+      if request.xhr?
         @errors = @run.errors.full_messages.to_json
         render :json => @errors
+      else
+        @errors = @run.errors
+        render 'new'
       end
     end
   end

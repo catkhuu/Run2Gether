@@ -20,7 +20,7 @@ $(function() {
       $.each(errors, function(index, value) {
         $('#errors').append('<li>' + value + '</li>')
       });
-    })
+    });
   });
 
   $('#rundown_container').on('click', '#start-new-run-btn', function(event) {
@@ -38,7 +38,12 @@ $(function() {
       hideUpcoming();
       hideButtons();
       showMap();
-    })
+    }).fail(function(jqXHR, TextStatus, status) {
+      var errors = $.parseJSON(jqXHR.responseText)
+      $.each(errors, function(index, value) {
+        $('#errors').append('<li>' + value + '</li>')
+      });
+    });
   });
 
 $('div.run-form').on('click','#create-run-btn',function(event){
@@ -65,7 +70,6 @@ $('div.run-form').on('click','#create-run-btn',function(event){
         $('#errors').append('<li>' + value + '</li>')
       });
     })
-
 })
 
   $('#rundown_container').on('click', '#find-partner-btn', function(event) {
@@ -112,7 +116,12 @@ $('div.run-form').on('click','#create-run-btn',function(event){
       hideMatchCard();
       showUpcoming();
       $('.upcoming-table').replaceWith(response);
-    })
+    }).fail(function(jqXHR, TextStatus, status) {
+      var errors = $.parseJSON(jqXHR.responseText)
+      $.each(errors, function(index, value) {
+        $('#errors').append('<li>' + value + '</li>')
+      });
+    });
   });
   $(document).on('click','.clickable-row',function(event) {
     event.preventDefault();
@@ -124,6 +133,11 @@ $('div.run-form').on('click','#create-run-btn',function(event){
       data: {'run_id': runData}
     }).done(function(response) {
       onRefresh(response);
+    }).fail(function(jqXHR, TextStatus, status) {
+      var errors = $.parseJSON(jqXHR.responseText)
+      $.each(errors, function(index, value) {
+        $('#errors').append('<li>' + value + '</li>')
+      });
     });
   });
 

@@ -1,4 +1,6 @@
 <div class="container upcoming-runs-table">
+  <div class="row">
+    <div class="col s12">
   <h3 class='center'> Upcoming Runs: </h3>
   <% if @upcoming_runs.any? %>
     <div class = 'container'>
@@ -26,6 +28,8 @@
         <% end %>
       </table>
     </div>
+    </div>
+  </div>
   <% else %>
     <p> You haven't planned any runs yet! Start a search or create a run to start planning! </p>
   <% end %>
