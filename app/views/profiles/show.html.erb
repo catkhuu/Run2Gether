@@ -1,5 +1,5 @@
 <div class="profile-show container center">
-  <div row>
+  <div>
     <div class="col s6 m6 l6 profile-pic-div">
       <%= image_tag @profile.avatar.url(:medium), class: "circle responsive-image profile-pic-show-view" %>
     </div>
@@ -15,9 +15,10 @@
     <p>Experience Level: <%=@profile.experience%></p>
     <p>Need To Knows: <%=@profile.need_to_knows%></p>
   </div>
-  <% if current_user == @profile.user %>
-    <div class = "container">
-      <%= link_to 'Edit Profile', edit_user_profile_path(current_user, @profile) %>
-    </div>
-  <% end %>
+    <% if current_user == @profile.user %>
+      <div class = "container">
+        <%= link_to 'Edit Profile', edit_user_profile_path(current_user, @profile) %>
+      </div>
+    <% end %>
+  </div>
 </div>
