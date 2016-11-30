@@ -51,7 +51,7 @@
       <li><div class="userView">
         <% if logged_in?%>
           <% if current_user.profile %>
-            <%= image_tag(current_user.profile.avatar.url(:thumb), :class => "center") %>
+            <%= image_tag(current_user.profile.avatar.url(:thumb), :class => "mobile-pic") %>
             <%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%>
           <% end %>
         </div></li>
