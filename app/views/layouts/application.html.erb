@@ -30,6 +30,8 @@
           <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
           <% if current_user.profile %>
           <li><%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%></li>
+          <% else %>
+          <li><%= link_to "#{current_user.name}'s Profile" , new_user_profile_path(current_user)%></li>
           <% end %>
           <li><a href="link.tbd">About R2G</a></li>
           <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>

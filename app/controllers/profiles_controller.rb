@@ -10,10 +10,11 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(profile_params)
-    if @profile.save
-      redirect_to user_profile_path(@profile.user_id, @profile)
+    profile = Profile.new(profile_params)
+    if profile.save
+      redirect_to user_profile_path(profile.user_id, profile)
     else
+      @errors = profile.errors.full_messages
       render 'new'
     end
   end
@@ -29,6 +30,7 @@ class ProfilesController < ApplicationController
     if @profile.update(profile_params)
       redirect_to user_profile_path(@profile.user_id, @profile)
     else
+      @errors = @profile.errors.full_messages 
       render 'edit'
     end
   end
