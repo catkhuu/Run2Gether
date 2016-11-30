@@ -1,36 +1,38 @@
 <div class="new-run-form container center" id="new-run-form">
-  <div class="row">
-    <div class="col s12">
-      <h3>Plan a New Run</h3>
-      <%= form_for :run, class: 'run-form-inputs', url: user_runs_path(current_user) do |f| %>
-        <div class="row">
-          <div class="col s3 offset-s3">
-            Desired distance: <%= f.number_field :desired_distance %>
+  <div class="container #eceff1 blue-grey lighten-5">
+    <div class="row">
+      <div class="col s12">
+        <h3>Plan a New Run</h3>
+        <%= form_for :run, class: 'run-form-inputs', url: user_runs_path(current_user) do |f| %>
+          <div class="row">
+            <div class="col s3 offset-s3">
+              Desired distance: <%= f.number_field :desired_distance %>
+            </div>
+            <div class='col s3'>
+              Enter a zipcode: <%= f.number_field :zipcode %>
+            </div>
           </div>
-          <div class='col s3'>
-            Enter a zipcode: <%= f.number_field :zipcode %>
+          <div class="row">
+            <div class="col s6 offset-s3">
+              Select a date: <%= f.text_field :run_date, class: "datepicker" %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col s6 offset-s3">
-            Select a date: <%= f.text_field :run_date, class: "datepicker" %>
+          <div class="row">
+            <div class="col s2 offset-s3">
+              Select hour:<br></br> <%= f.select :run_hours, (1..12).map { |hour| hour }%>
+            </div>
+            <div class="col s2">
+              Select minutes: <%= f.select :run_minutes, ['00', '15', '30', '45']%>
+            </div>
+            <div class="col s2">
+              Time of Day: <%= f.select :run_daypart, ['AM', 'PM'] %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col s2 offset-s3">
-            Select hour: <%= f.select :run_hours, (1..12).map { |hour| hour }%>
+          <div class="row">
+            <%= f.submit "Create Run", :class => "waves-effect waves-light btn #e53935 red darken-1", id: "create-run-btn" %>
           </div>
-          <div class="col s2">
-            Select minutes: <%= f.select :run_minutes, ['00', '15', '30', '45']%>
-          </div>
-          <div class="col s2">
-            Time of Day: <%= f.select :run_daypart, ['AM', 'PM'] %>
-          </div>
-        </div>
-        <div class="row">
-          <%= f.submit "Create Run", :class => "waves-effect waves-light btn #00acc1 cyan darken-1", id: "create-run-btn" %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

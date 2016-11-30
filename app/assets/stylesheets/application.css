@@ -33,11 +33,14 @@ html {
  main {
   padding-top: 0px;
   flex: 1 0 auto;
-
+}
+div.main-show{
+  background-image: url(../show-page-run_touch_up.jpg);
+  background-size: cover;
 }
 body.static {
   background-image: url(../foot_fetish_touched_up.jpg);
-  background-size: 1960px 1280px;
+  background-size: cover;
   /*max-width: 100%;
     height: auto;
     width: auto\9; /* ie8 */*/
@@ -77,6 +80,10 @@ footer.page-footer {
 
  nav {
    font-weight: 900;
+ }
+
+ ul.side-nav {
+   font-weight: 700;
  }
 
  .mobile-pic {
@@ -135,7 +142,6 @@ footer a:visited {
 #move-logo {
   padding-left: 2%;
 }
-
 
 @media screen and (min-width: 0px) and (max-width: 992px) {
   #desktop-nav { display: none; }
