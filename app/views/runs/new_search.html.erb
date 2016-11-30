@@ -1,25 +1,25 @@
 <div class="new-search-form container center">
   <div class="row">
-    <div class="col s8">
+    <div class="col s12">
       <h3>Search for a run</h3>
       <%= form_for :run, url: '/runs/search', method: 'GET', id: 'search-form' do |f| %>
             <div class="row">
-            <div class="col s6">
+            <div class="col s3 offset-s3">
               Enter a run distance: <%= f.number_field :desired_distance %>
             </div>
-            <div class="col s6">
+            <div class="col s3">
               Enter a zipcode: <%= f.number_field :zipcode %>
             </div>
           </div>
           <div class="row">
-            <div class="col s12">
+            <div class="col s6 offset-s3">
               Select a date: <%= f.text_field :run_date, class: "datepicker" %>
             </div>
           </div>
         <div class="row">
-          <div class="col s4">Select hour: <%= f.select :run_hours, (1..12).map { |hour| hour } %></div>
-          <div class="col s4">Select minutes: <%= f.select :run_minutes, ['00', '15', '30', '45'] %></div>
-          <div class="col s4">Time of Day: <%= f.select :run_daypart, ['AM', 'PM'] %></div>
+          <div class="col s2 offset-s3">Select hour: <%= f.select :run_hours, (1..12).map { |hour| hour } %></div>
+          <div class="col s2">Select minutes: <%= f.select :run_minutes, ['00', '15', '30', '45'] %></div>
+          <div class="col s2">Time of Day: <%= f.select :run_daypart, ['AM', 'PM'] %></div>
         </div>
 
         <%= f.submit "Find my Partner", :class => "waves-effect waves-light btn #00acc1 cyan darken-1", id: "find-partner-btn" %>
