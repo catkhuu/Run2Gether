@@ -19,7 +19,9 @@ html {
 }
 
  body {
+
    font-family: 'Raleway', sans-serif;
+   background-color: #eceff1;
    height: 100%;
    margin: auto;
    padding: 0;
@@ -32,6 +34,16 @@ html {
   padding-top: 0px;
   flex: 1 0 auto;
 
+}
+body.static {
+  background-image: url(../foot_fetish_touched_up.jpg);
+  background-size: 1960px 1280px;
+  /*max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */*/
+}
+div.button-wrapper{
+  margin-top: 450px;
 }
 
 footer {
@@ -97,7 +109,7 @@ ul#errors {
   font-size: 12;
 }
 
-
+/*.slider*/
 
 /*html {
   position: relative;
@@ -108,7 +120,9 @@ ul#errors {
 /*body {
   padding-bottom: 250px;
 }*/
-
+div#rundown_container{
+  background-color: #757575 :transparent;
+}
 footer a:link {
   text-decoration: none;
   color: white;
