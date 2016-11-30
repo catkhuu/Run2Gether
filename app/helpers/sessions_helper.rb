@@ -20,6 +20,10 @@ module SessionsHelper
     end
   end
 
+  def has_profile?
+    !!current_user.profile
+  end
+
   def correct_user
     render 'application/error_404' unless current_user?
   end
