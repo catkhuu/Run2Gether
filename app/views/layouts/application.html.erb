@@ -24,7 +24,7 @@
         <% if current_user.profile %>
         <a><img src="<%= current_user.profile.avatar.url(:thumb) %>" class="circle profile-pic right"></a>
         <% else %>
-          <a><img src="dinosaur.gif" class="circle profile-pic right"></a>
+          <a><img src="running_shoe.png" class="circle profile-pic right"></a>
         <% end %>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
           <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>

@@ -40,11 +40,8 @@
 
  img.profile-pic-show-view {
    max-width: 28%;
+   max-height: 
    height: auto;
- }
-
- div.profile-show {
-   margin-left: 23%;
  }
 
 div.rundown {
