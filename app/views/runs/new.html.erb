@@ -1,17 +1,33 @@
-<div class="container new-run-form" id="new-run-form">
-  <h2>Plan a New Run</h2>
-
-  <%= form_for :run, class: 'run-form-inputs', url: user_runs_path(current_user) do |f| %>
-    Select a date: <%= f.text_field :run_date, class: "datepicker" %>
-
-    Select hour: <%= f.select :run_hours, (1..12).map { |hour| hour }%> <br />
-    Select minutes: <%= f.select :run_minutes, ['00', '15', '30', '45']%> <br />
-    Select morning or evening: <%= f.select :run_daypart, ['AM', 'PM'] %> <br />
-    Desired distance: <%= f.number_field :desired_distance %> <br />
-
-    Enter a zipcode: <%= f.number_field :zipcode %> <br />
-    <br />
-
-    <%= f.submit "Create Run", :class => "waves-effect waves-light btn #00acc1 cyan darken-1", id: "create-run-btn" %>
-  <% end %>
+<div class="new-run-form container center" id="new-run-form">
+  <div class="row">
+    <div class="col s8">
+      <h3>Plan a New Run</h3>
+      <%= form_for :run, class: 'run-form-inputs', url: user_runs_path(current_user) do |f| %>
+        <div class="row">
+          <div class="col s6">
+            Desired distance: <%= f.number_field :desired_distance %>
+          </div>
+          <div class='col s6'>
+            Enter a zipcode: <%= f.number_field :zipcode %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            Select a date: <%= f.text_field :run_date, class: "datepicker" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s4">
+            Select hour: <%= f.select :run_hours, (1..12).map { |hour| hour }%>
+          </div>
+          <div class="col s4">
+            Select minutes: <%= f.select :run_minutes, ['00', '15', '30', '45']%>
+          </div>
+          <div class="col s4">
+            Time of Day: <%= f.select :run_daypart, ['AM', 'PM'] %>
+          </div>
+          <%= f.submit "Create Run", :class => "waves-effect waves-light btn #00acc1 cyan darken-1", id: "create-run-btn" %>
+      <% end %>
+    </div>
+  </div>
 </div>
