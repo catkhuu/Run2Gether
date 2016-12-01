@@ -1,7 +1,7 @@
-<div class='match-card'>
+<div class='match-card #eceff1 blue-grey lighten-5'>
 <div class="col s12 m7">
     <h3 class="header">Match Found!</h3>
-    <div class="card horizontal">
+    <div class="card horizontal #eceff1 blue-grey lighten-5">
       <div class="card-image">
         <%= image_tag(@final.runner.profile.avatar.url(:medium))%>
       </div>
@@ -12,7 +12,7 @@
               </span>
           <p>Why I Run: <%=@final.runner.profile.why_i_run %></p>
           <p>Goals: <%=@final.runner.profile.goals %></p>
-          <p>I would like to run on '<%= @final.run_date %>'</p>
+          <p>I would like to run on <%= @final.run_date %></p>
         </div>
         <div class="card-action">
           <a href="/add_companion/<%= @final.id %>" method= 'put' class='my-accept-run-btn' id='<%= @final.runner_id %>'>Accept</a>
