@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
     if @profile.update(profile_params)
       redirect_to user_profile_path(@profile.user_id, @profile)
     else
-      @errors = @profile.errors.full_messages 
+      @errors = @profile.errors.full_messages
       render 'edit'
     end
   end
