@@ -39,6 +39,7 @@ $('#rundown_container').on('click', '#start-new-run-btn', function(event) {
 // creates actual run object
 $('div.run-form').on('click','#create-run-btn',function(event){
   event.preventDefault();
+  $('div.run-form').
   var $form = $('#new-run-form').find('form');
   $('#new-run-form').remove();
   var data = $form.serialize();
@@ -58,6 +59,8 @@ $('div.run-form').on('click','#create-run-btn',function(event){
   }).fail(function(jqXHR, TextStatus, status) {
       var errors = $.parseJSON(jqXHR.responseText);
       $.each(errors, function(index, value) {
+        console.log(value);
+        alert(value);
         $('#errors').append('<li>' + value + '</li>');
       });
     });
