@@ -60,9 +60,12 @@
       </ul>
     </div>
   </nav>
+  <% flash.each do |name, message| %>
+    <script type="text/javascript">
+    Materialize.toast('<%= message %>', 6000, 'rounded')
+    </script>
+  <% end %>
 
-    <div class="notice"><%= flash[:success] %></div>
-    <div class="alert"><%= flash[:danger] %></div>
     <main>
     <%= yield %>
     </main>
