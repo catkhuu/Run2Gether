@@ -1,0 +1,142 @@
+/* line 1, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/profiles.scss */
+div.profile-show {
+  padding-bottom: 10%;
+}
+
+/* line 5, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/profiles.scss */
+div.profile-pic-div {
+  padding-top: 5%;
+}
+/* line 1, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/sessions.scss */
+div#sessions-new-form {
+  padding-top: 5%;
+}
+/* line 1, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/users.scss */
+h1 {
+  margin: auto;
+}
+
+/* line 5, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/users.scss */
+ul.errors {
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-top: 0.5%;
+}
+
+/* line 11, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/users.scss */
+ul.errors li {
+  line-height: 1.4em;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
+
+html {
+
+}
+
+ body {
+   font-family: 'Raleway', sans-serif;
+   height: 100%;
+   margin: auto;
+   padding: 0;
+ }
+
+ #map {
+   height: 400px;
+   width: 100%;
+   margin-bottom: 50px;
+  }
+
+ img.profile-pic {
+   min-width: 5%;
+   min-height: 60%;
+   max-width: 9%;
+   max-height: 90%;
+
+ }
+
+ nav {
+   font-weight: 900;
+ }
+
+ .mobile-pic {
+   border-radius: 50%;
+   margin-left: 32%;
+   min-width: 40%;
+   min-height: 60%;
+   max-width: 45%;
+   max-height: 90%;
+ }
+
+ div.profile-pic {
+   margin-left: 30%
+ }
+
+ img.profile-pic-show-view {
+   max-width: 28%;
+   max-height:
+   height: auto;
+ }
+
+.errors {
+  color: red;
+  line-height: 1.5em;
+}
+
+ul#errors {
+  color: red;
+  line-height: 1.5em;
+  font-size: 12;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  color: white;
+  font-weight: 700;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+body {
+  padding-bottom: 250px;
+}
+
+footer a:link {
+  text-decoration: none;
+  color: white;
+}
+
+footer a:visited {
+  color: white;
+}
+
+@media screen and (min-width: 0px) and (max-width: 992px) {
+  #desktop-nav { display: none; }
+  #mobile-nav { display: block; }
+}
+
+@media screen and (min-width: 993px) and (max-width: 10000px) {
+  #mobile-nav { display: none; }
+  #desktop-nav { display: block; }
+}
