@@ -25,18 +25,9 @@
       </div>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <% if logged_in?%>
-          <% if current_user.profile %>
-          <a><img src="<%= current_user.profile.avatar.url(:thumb) %>" class="circle profile-pic right"></a>
-          <% else %>
-            <a><img src="dinosaur.gif" class="circle profile-pic right"></a>
-          <% end %>
+        <a><img src="<%= load_profile_picture %>" class="circle profile-pic right"></a>
       <ul class="right hide-on-med-and-down">
-        <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
-          <% if current_user.profile %>
-            <li><%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%></li>
-          <% else %>
-            <li><%= link_to "#{current_user.name}'s Profile" , new_user_profile_path(current_user)%></li>
-          <% end %>
+        <li><a href="<%= create_or_view_profile %>"><%= current_user.name %>'s Profile</a></li>
         <li><%=link_to "About R2G", about_path %></li>
         <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
       </ul>
@@ -49,15 +40,13 @@
       <% end %>
 
       <ul class="side-nav" id="mobile-demo">
-        <li><div class="userView">
         <% if logged_in?%>
-            <% if current_user.profile %>
-              <%= image_tag(current_user.profile.avatar.url(:thumb), :class => "mobile-pic") %>
-              <%= link_to "#{current_user.name}'s Profile" , user_profile_path(current_user, current_user.profile)%>
-            <% else %>
-              <li><%= link_to "#{current_user.name}'s Profile" , new_user_profile_path(current_user)%></li>
-            <% end %>
-          </div></li>
+          <li>
+            <div class="userView">
+              <img src="<%= load_profile_picture %>" class="mobile-pic">
+            </div>
+          </li>
+          <li><a href="<%= create_or_view_profile %>"><%= current_user.name %>'s Profile</a></li>
           <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
           <li><%=link_to "About R2G", about_path %></li>
           <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
