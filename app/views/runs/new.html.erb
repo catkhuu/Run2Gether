@@ -19,7 +19,7 @@
           </div>
           <div class="row">
             <div class="col s2 offset-s3">
-              Select hour:<br></br> <%= f.select :run_hours, (1..12).map { |hour| hour }%>
+              Select hour: <%= f.select :run_hours, (1..12).map { |hour| hour }%>
             </div>
             <div class="col s2">
               Select minutes: <%= f.select :run_minutes, ['00', '15', '30', '45']%>
