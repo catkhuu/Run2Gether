@@ -10,7 +10,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:400,700,900">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:400,700,900|Material+Icons">
 <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
@@ -20,7 +20,9 @@
   <body>
     <nav>
     <div class="nav-wrapper #263238 blue-grey darken-4">
-      <a href="root_path" class="brand-logo">Run2Gether</a>
+      <div id="move-logo">
+        <a href="/" class="brand-logo our-logo">Run2Gether</a>
+      </div>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <% if logged_in?%>
           <% if current_user.profile %>
@@ -57,7 +59,7 @@
             <% end %>
           </div></li>
           <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
-          <li><a href="link.tbd">About R2G</a></li>
+          <li><%=link_to "About R2G", about_path %></li>
           <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
           <li><div class="divider"></div></li>
         <% else %>

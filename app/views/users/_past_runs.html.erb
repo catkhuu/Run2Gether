@@ -1,48 +1,50 @@
-<h3 class='center'> Past Run Stats: </h3>
-<% if @past_runs.any? %>
-  <div class = 'container'>
-    <table class='responsive-table highlight bordered'>
-      <tr>
-        <th>Run Date</th>
-        <th>Location</th>
-        <th>Companion</th>
-        <th>Overall Distance</th>
-        <th>Overall Time</th>
-        <th>Average Pace</th>
-        <th> Edit </th>
-      </tr>
-      <% @past_runs.each do |run| %>
-      <tr>
-        <td><%= run.run_date %></td>
-        <td><%= run.zipcode %></td>
-        <% if run.companion %>
-          <% if run.runner_id == current_user.id %>
-            <td><%= link_to "#{run.companion.name}", user_profile_path(run.companion_id, run.companion.profile.id) %></td>
-          <% elsif run.companion_id == current_user.id %>
-            <td><%= link_to "#{run.runner.name}", user_profile_path(run.runner_id, run.runner.profile.id)%></td>
+<div class="container part-runs-partial-table #eceff1 blue-grey lighten-5">
+  <h3 class='center'> Past Run Stats: </h3>
+  <% if @past_runs.any? %>
+    <div class = 'container'>
+      <table class='responsive-table highlight bordered'>
+        <tr>
+          <th>Run Date</th>
+          <th>Location</th>
+          <th>Companion</th>
+          <th>Overall Distance</th>
+          <th>Overall Time</th>
+          <th>Average Pace</th>
+          <th> Edit </th>
+        </tr>
+        <% @past_runs.each do |run| %>
+        <tr>
+          <td><%= run.run_date %></td>
+          <td><%= run.zipcode %></td>
+          <% if run.companion %>
+            <% if run.runner_id == current_user.id %>
+              <td><%= link_to "#{run.companion.name}", user_profile_path(run.companion_id, run.companion.profile.id) %></td>
+            <% elsif run.companion_id == current_user.id %>
+              <td><%= link_to "#{run.runner.name}", user_profile_path(run.runner_id, run.runner.profile.id)%></td>
+            <% end %>
+          <% else %>
+            <td> Solo </td>
           <% end %>
-        <% else %>
-          <td> Solo </td>
+          <% if run.distance %>
+            <td><%= run.distance %></td>
+          <% else %>
+            <td> </td>
+          <% end %>
+          <% if run.run_time %>
+            <td><%= run.run_time %></td>
+          <% else %>
+            <td> </td>
+          <% end %>
+          <% if run.run_pace %>
+            <td><%= run.run_pace %></td>
+          <% else %>
+            <td> </td>
+          <% end %>
+          <td> <%= link_to "Edit This Run", user_run_edit_stats_path(run.runner_id, run.id) %></td>
         <% end %>
-        <% if run.distance %>
-          <td><%= run.distance %></td>
-        <% else %>
-          <td> </td>
-        <% end %>
-        <% if run.run_time %>
-          <td><%= run.run_time %></td>
-        <% else %>
-          <td> </td>
-        <% end %>
-        <% if run.run_pace %>
-          <td><%= run.run_pace %></td>
-        <% else %>
-          <td> </td>
-        <% end %>
-        <td> <%= link_to "Edit This Run", user_run_edit_stats_path(run.runner_id, run.id) %></td>
-      <% end %>
-    </table>
-  </div>
-<% else %>
-  <p> You haven't had any runs yet! </p>
-<% end %>
+      </table>
+    </div>
+  <% else %>
+    <p> You haven't had any runs yet! </p>
+  <% end %>
+</div>

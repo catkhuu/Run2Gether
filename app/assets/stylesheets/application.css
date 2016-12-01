@@ -19,11 +19,50 @@ html {
 }
 
  body {
+
    font-family: 'Raleway', sans-serif;
+   background-color: #eceff1;
    height: 100%;
    margin: auto;
    padding: 0;
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
  }
+
+ main {
+  padding-top: 0px;
+  flex: 1 0 auto;
+}
+div.main-show{
+  background-image: url(../show-page-run_touch_up.jpg);
+  background-size: cover;
+}
+body.static {
+  background-image: url(../foot_fetish_touched_up.jpg);
+  background-size: cover;
+  /*max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */*/
+}
+div.button-wrapper{
+  margin-top: 450px;
+}
+
+footer {
+  /*position: absolute;
+  bottom: 0;*/
+  width: 100%;
+  height: 50px;
+  color: white;
+  font-weight: 700;
+}
+
+footer.page-footer {
+  margin-top: 0px;
+  padding-top: 0px;
+  background-color: #263238;
+}
 
  #map {
    height: 400px;
@@ -41,6 +80,10 @@ html {
 
  nav {
    font-weight: 900;
+ }
+
+ ul.side-nav {
+   font-weight: 700;
  }
 
  .mobile-pic {
@@ -73,25 +116,20 @@ ul#errors {
   font-size: 12;
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  color: white;
-  font-weight: 700;
-}
+/*.slider*/
 
-html {
+/*html {
   position: relative;
   min-height: 100%;
-}
+}*/
 
 
-body {
+/*body {
   padding-bottom: 250px;
+}*/
+div#rundown_container{
+  background-color: #757575 :transparent;
 }
-
 footer a:link {
   text-decoration: none;
   color: white;
@@ -99,6 +137,10 @@ footer a:link {
 
 footer a:visited {
   color: white;
+}
+
+#move-logo {
+  padding-left: 2%;
 }
 
 @media screen and (min-width: 0px) and (max-width: 992px) {
