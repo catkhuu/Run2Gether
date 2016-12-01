@@ -26,21 +26,21 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <% if logged_in?%>
         <a><img src="<%= load_profile_picture %>" class="circle profile-pic right"></a>
-      <ul class="right hide-on-med-and-down">
+      <ul class="right hide-on-med-and-down main-nav-bar-list">
         <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
         <li><a href="<%= create_or_view_profile %>"><%= current_user.name %>'s Profile</a></li>
         <li><%=link_to "About R2G", about_path %></li>
         <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
       </ul>
       <% else %>
-        <ul class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down main-nav-bar-list">
           <li><%= link_to "Register", new_user_path %></li>
           <li><%= link_to "Login", new_session_path %></li>
           <li><%=link_to "About R2G", about_path %></li>
         </ul>
       <% end %>
 
-      <ul class="side-nav" id="mobile-demo">
+      <ul class="side-nav main-nav-bar-list" id="mobile-demo">
         <% if logged_in?%>
           <li>
             <div class="userView">
