@@ -27,6 +27,7 @@
       <% if logged_in?%>
         <a><img src="<%= load_profile_picture %>" class="circle profile-pic right"></a>
       <ul class="right hide-on-med-and-down">
+        <li><%= link_to "The Rundown", user_path(current_user), class: "active" %></li>
         <li><a href="<%= create_or_view_profile %>"><%= current_user.name %>'s Profile</a></li>
         <li><%=link_to "About R2G", about_path %></li>
         <li><%= link_to "Logout", session_path(current_user), method: :delete %></li>
