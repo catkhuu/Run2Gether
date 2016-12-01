@@ -1,32 +1,3 @@
-/* line 1, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/profiles.scss */
-div.profile-show {
-  padding-bottom: 10%;
-}
-
-/* line 5, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/profiles.scss */
-div.profile-pic-div {
-  padding-top: 5%;
-}
-/* line 1, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/sessions.scss */
-div#sessions-new-form {
-  padding-top: 5%;
-}
-/* line 1, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/users.scss */
-h1 {
-  margin: auto;
-}
-
-/* line 5, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/users.scss */
-ul.errors {
-  margin-right: auto;
-  margin-bottom: 0;
-  margin-top: 0.5%;
-}
-
-/* line 11, /Users/apprentice/wednesday/R2G2/app/assets/stylesheets/users.scss */
-ul.errors li {
-  line-height: 1.4em;
-}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -39,21 +10,59 @@ ul.errors li {
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
-
-
+ *= require_tree .
+ *= require_self
  */
-
 
 html {
 
 }
 
  body {
+
    font-family: 'Raleway', sans-serif;
+   background-color: #eceff1;
    height: 100%;
    margin: auto;
    padding: 0;
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
  }
+
+ main {
+  padding-top: 0px;
+  flex: 1 0 auto;
+}
+div.main-show{
+  background: image-url('show-page-run_touch_up.jpg');
+  background-size: cover;
+}
+body.static {
+  background: image-url('foot_fetish_touched_up.jpg');
+  background-size: cover;
+  /*max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+div.button-wrapper{
+  margin-top: 450px;
+}
+
+footer {
+  /*position: absolute;
+  bottom: 0;*/
+  width: 100%;
+  height: 50px;
+  color: white;
+  font-weight: 700;
+}
+
+footer.page-footer {
+  margin-top: 0px;
+  padding-top: 0px;
+  background-color: #263238;
+}
 
  #map {
    height: 400px;
@@ -73,6 +82,10 @@ html {
    font-weight: 900;
  }
 
+ ul.side-nav {
+   font-weight: 700;
+ }
+
  .mobile-pic {
    border-radius: 50%;
    margin-left: 32%;
@@ -88,7 +101,6 @@ html {
 
  img.profile-pic-show-view {
    max-width: 28%;
-   max-height:
    height: auto;
  }
 
@@ -103,25 +115,20 @@ ul#errors {
   font-size: 12;
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  color: white;
-  font-weight: 700;
-}
+/*.slider*/
 
-html {
+/*html {
   position: relative;
   min-height: 100%;
-}
+}*/
 
 
-body {
+/*body {
   padding-bottom: 250px;
+}*/
+div#rundown_container{
+  background-color: #757575 transparent;
 }
-
 footer a:link {
   text-decoration: none;
   color: white;
@@ -129,6 +136,10 @@ footer a:link {
 
 footer a:visited {
   color: white;
+}
+
+#move-logo {
+  padding-left: 2%;
 }
 
 @media screen and (min-width: 0px) and (max-width: 992px) {
