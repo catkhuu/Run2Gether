@@ -1,21 +1,21 @@
-<div class='match-card'>
-<div class="col s12 m7">
-    <h3 class="header">Match Found!</h3>
-    <div class="card horizontal">
+<div class='match-card #eceff1 blue-grey lighten-5'>
+<div class="col s9 m7">
+    <h3 class="header"><b>Match Found!</b></h3>
+    <div class="card horizontal #eceff1 blue-grey lighten-5">
       <div class="card-image">
         <%= image_tag(@final.runner.profile.avatar.url(:medium))%>
       </div>
       <div class="card-stacked">
         <div class="card-content">
           <span class="card-title">
-                <%= @final.runner.name %>
+                <b><%= @final.runner.name %></b>
               </span>
-          <p>Why I Run: <%=@final.runner.profile.why_i_run %></p>
-          <p>Goals: <%=@final.runner.profile.goals %></p>
-          <p>I would like to run on '<%= @final.run_date %>'</p>
+          <p><b>Why I Run:</b> <%=@final.runner.profile.why_i_run %></p>
+          <p><b>Goals:</b> <%=@final.runner.profile.goals %></p>
+          <p><b>I would like to run on <%= @final.run_date %></b></p>
         </div>
         <div class="card-action">
-          <a href="/add_companion/<%= @final.id %>" method= 'put' class='my-accept-run-btn' id='<%= @final.runner_id %>'>Accept</a>
+          <a href="/add_companion/<%= @final.id %>" method= 'put' class='my-accept-run-btn' id='<%= @final.runner_id %>'><b>Accept</b></a>
           <br>
           <p> Or, create a new run to get a different match!</p>
         </div>
