@@ -51,7 +51,7 @@ class RunsController < ApplicationController
       end
     else
       if request.xhr?
-        status 500
+        render 'users/_no_match', layout: false
       else
         @errors = {my_error: 'Sorry we are experiencing techincal difficulties'}
         render 'new_search'
