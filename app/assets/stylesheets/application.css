@@ -35,11 +35,11 @@ html {
   flex: 1 0 auto;
 }
 div.main-show{
-  background-image: url(/assets/show-page-run_touch_up.jpg);
+  background: image-url('show-page-run_touch_up.jpg');
   background-size: cover;
 }
 body.static {
-  background-image: url(/assets/foot_fetish_touched_up.jpg);
+  background: image-url('foot_fetish_touched_up.jpg');
   background-size: cover;
   /*max-width: 100%;
     height: auto;
