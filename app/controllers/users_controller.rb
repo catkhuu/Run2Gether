@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      flash[:success] = "You're almost there! Please tell us a little more about yourself." # This needs to be styled, otherwise, let's remove it
+      flash[:success] = "You're almost there! Please tell us a little more about yourself."
       redirect_to new_user_profile_path(user)
     else
       @user = User.new
