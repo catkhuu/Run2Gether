@@ -35,12 +35,13 @@ class RunsController < ApplicationController
   end
 
   def search
-    binding.pry
     searched_run = Run.create(run_params)
     nearby_runs = Run.nearby_runs(searched_run)
     runs_on_date = Run.runs_on_date(searched_run, nearby_runs)
     my_level_runs = Run.runs_by_experience(runs_on_date, current_user)
-
+    ################################################################################
+    #FIXME: For some reason, when no result is found, the no_match partial is not returned. Instead, user will receive a 500 error. Take a look at @final and what is returned. Page does NOT break. It doesn't return the correct partial.
+    ################################################################################
     @final = Run.search_results(my_level_runs, current_user).sample
     if @final
       if request.xhr?
@@ -52,7 +53,7 @@ class RunsController < ApplicationController
       if request.xhr?
         render 'users/_no_match', layout: false
       else
-        @errors = {my_error: 'Sorry we are experiencing techincal difficulties'}
+        @errors = { my_error: 'Sorry we are experiencing techincal difficulties' }
         render 'new_search'
       end
     end
@@ -60,10 +61,10 @@ class RunsController < ApplicationController
 
   def add_companion
     if run = Run.where(id: params[:run_id]).update(companion_id: current_user.id)
-      users_runs = Run.all.select { |run| run.runner_id == current_user.id || run.companion_id == current_user.id }
-      @upcoming_runs = users_runs.select { |run| run.converted_date > DateTime.now }
+      users_runs = Run.run_history(current_user)
+      @upcoming_runs = Run.upcoming_runs(users_runs)
       if request.xhr?
-        render partial: 'users/upcoming_runs', layout: false, locals: {upcoming_runs: @upcoming_runs}
+        render partial: 'users/upcoming_runs', layout: false, locals: { upcoming_runs: @upcoming_runs }
       else
         redirect_to users_path(current_user.id)
       end
@@ -107,11 +108,9 @@ class RunsController < ApplicationController
 
   def sanitize_params
     if params[:run][:run_daypart] == 'PM'
-      params[:run][:run_hours] = params[:run][:run_hours].to_i + 12
+      params[:run][:run_hours] = offset_time(params[:run][:run_hours])
     end
-    hr_sec = helpers.convert_hours_to_seconds(params[:run][:run_hours])
-    min_sec = helpers.convert_minutes_to_seconds(params[:run][:run_minutes])
-    params[:run][:time] = hr_sec + min_sec
+    params[:run][:time] = helpers.convert_time(params[:run][:run_hours], params[:run][:run_minutes])
     params[:run][:runner_id] = current_user.id
   end
 end
