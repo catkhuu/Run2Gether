@@ -40,7 +40,8 @@ $('#rundown_container').on('click', '#start-new-run-btn', function(event) {
 $('div.run-form').on('click','#create-run-btn',function(event){
   event.preventDefault();
   var $form = $('#new-run-form').find('form');
-  $('#new-run-form').remove();
+  // $('#new-run-form').remove();
+  removeErrors();
   var data = $form.serialize();
   var url = $form.attr('action');
   var method = $form.attr('method');
@@ -51,12 +52,12 @@ $('div.run-form').on('click','#create-run-btn',function(event){
   }).done(function(response){
     $('.upcoming-table').replaceWith(response);
     $('.upcoming-runs-table').show();
-     enableMaterialize();
-     removeNewRunForm();
-      showUpcoming();
-      showButtons();
+    enableMaterialize();
+    removeNewRunForm();
+    showUpcoming();
+    showButtons();
   }).fail(function(jqXHR, TextStatus, status) {
-      var errors = $.parseJSON(jqXHR.responseText);
+      var errors = $.parseJSON(jqXHR.responseText).errors;
       $.each(errors, function(index, value) {
         $('#errors').append('<li>' + value + '</li>');
       });
@@ -189,6 +190,10 @@ function onRefresh(position) {
      position: default_position,
      map: map
    });
-}
+};
+
+function removeErrors() {
+  $('#errors li').remove();
+};
 // end of function
 });
