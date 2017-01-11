@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20161128065742) do
     t.string   "run_date",         null: false
     t.integer  "time",             null: false
     t.string   "zipcode"
-    t.float    "latitude",         null: false
-    t.float    "longitude",        null: false
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.float    "desired_distance"
