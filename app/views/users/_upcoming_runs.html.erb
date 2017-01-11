@@ -16,10 +16,10 @@
           <td><%= run.zipcode %></td>
           <td><%=run.desired_distance %></td>
           <% if run.companion %>
-            <% if run.runner_id == current_user.id %>
-              <td ><%= link_to "#{run.companion.name}", user_profile_path(run.companion_id, run.companion.profile.id) %></td>
-            <% elsif run.companion_id == current_user.id %>
-              <td><%= link_to "#{run.runner.name}", user_profile_path(run.runner_id, run.runner.profile.id)%></td>
+            <% if run.runner == current_user %>
+              <td ><%= link_to "#{run.companion.name}", user_profile_path(run.companion.id, run.companion.profile.id) %></td>
+            <% elsif run.companion == current_user %>
+              <td><%= link_to "#{run.runner.name}", user_profile_path(run.runner.id, run.runner.profile.id)%></td>
             <% end %>
           <% else %>
             <td> Still Searching </td>
