@@ -13,18 +13,26 @@ We're always looking for eager developers with a passion for running to contribu
 In your terminal, clone the repository: ```` git clone https://github.com/catkhuu/Run2Gether.git ````
 
 ####Bundle 
-  ` bundle install `
+  ```
+  bundle install
+  ```
   
    We use PostgreSQL, but feel free to swap this out for SQLite in your gem file before bundling.
 
 ####Create database 
-` bundle exec rake db:create` 
+  ``` 
+  bundle exec rake db:create
+  ``` 
 
 ####Run migrations 
-` bundle exec rake db:migrate `
+  ``` 
+  bundle exec rake db:migrate 
+  ```
 
 ####Start your server 
-` rails s ` 
+  ```
+  rails s 
+  ``` 
 
 Visit localhost:3000 in your browser 
 
