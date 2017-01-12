@@ -9,6 +9,7 @@ During her time at Dev Bootcamp, she developed her skills to become a well-round
 Catherine is currently seeking full-time junior web developer opportunities in NYC, preferably fullstack or back-end.
 
 Reach out by email: [cmkhuu1@gmail.com](mailto:cmkhuu1@gmail.com). 
+
 Connect with her on [LinkedIn](http://www.linkedin.com/in/catkhuu).
 
 <hr>
