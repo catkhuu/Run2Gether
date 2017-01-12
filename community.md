@@ -19,11 +19,15 @@ Marketing-minded and master of maps, Matt is another member of the team that bro
 
 Matt is currently traveling the world, but please reach out to him via [LinkedIn](https://www.linkedin.com/in/matt-critelli-0403a153)
 
+<hr>
+
 ### [Lindsay Kelly](https://github.com/lindsaymkelly/)
 
 Outside of coding, Lindsay's hobbies include making bad puns, collecting Pusheen the Cat merchandise, and writing silly blurbs about her team mates.
 
 Lindsay is currently seeking full-time junior developer opportunities in NYC. Reach out by [LinkedIn](http://www.linkedin.com/in/lindsay-kelly-438614124).
+
+<hr>
 
 ### [Miles McArdle-Coe](https://github.com/Kndekaru/)
 
