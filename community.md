@@ -4,7 +4,7 @@
 
 Catherine loves all things Ruby and back-end. After graduation, Catherine is spending her time delving deeper into React, node.js, and Javascript.
 
-During her time at Dev Bootcamp, she developed her skills to become a well-rounded fullstack developer, fast learner, and reliable pair programmer. You can find her at the Women Who Codea and NYC.rb meetups in the community.
+During her time at Dev Bootcamp, she developed her skills to become a well-rounded fullstack developer, fast learner, and reliable pair programmer. You can find her at the Women Who Code and NYC.rb meetups in the community.
 
 Catherine is currently seeking full-time junior web developer opportunities in NYC, preferably fullstack or back-end.
 
