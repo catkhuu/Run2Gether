@@ -1,5 +1,4 @@
 class ProfilesController < ApplicationController
-  include ProfilesHelper
   before_action :logged_in_user, :find_and_ensure_user
   before_action :correct_user, only: [:edit, :update]
   before_action :find_and_ensure_profile, only: [:show, :edit, :update]
@@ -20,7 +19,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @location = geocode_zip(@user)
+    @location = helpers.geocode_zip(@user)
   end
 
   def edit
