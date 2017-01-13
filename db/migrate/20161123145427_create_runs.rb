@@ -8,7 +8,7 @@ class CreateRuns < ActiveRecord::Migration[5.0]
       t.references :companion
       t.string   :run_date, null: false
       t.integer     :time, null: false
-      t.integer    :zipcode
+      t.string    :zipcode
       t.float :latitude, null: false
       t.float :longitude, null: false
 

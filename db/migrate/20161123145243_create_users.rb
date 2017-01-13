@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string  :name, null: false
       t.string  :email, null: false
       t.string  :password_digest, null: false
-      t.integer  :zipcode, null: false
+      t.string  :zipcode, null: false
       t.float :latitude, null: false
       t.float :longitude, null: false
 

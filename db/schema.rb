@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20161128065742) do
     t.integer  "companion_id"
     t.string   "run_date",         null: false
     t.integer  "time",             null: false
-    t.integer  "zipcode"
-    t.float    "latitude",         null: false
-    t.float    "longitude",        null: false
+    t.string   "zipcode"
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.float    "desired_distance"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20161128065742) do
     t.string   "name",            null: false
     t.string   "email",           null: false
     t.string   "password_digest", null: false
-    t.integer  "zipcode",         null: false
+    t.string   "zipcode",         null: false
     t.float    "latitude",        null: false
     t.float    "longitude",       null: false
     t.datetime "created_at",      null: false
