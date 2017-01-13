@@ -5,7 +5,7 @@ A web app that seeks to connect runners in the area based on their proximity, ex
 ![Run2Gether Homepage](https://github.com/catkhuu/Run2Gether/blob/master/public/r2g_homepage.jpg)
 
 ## Contributing 
-We're always looking for eager developers with a passion for running to contribute. Checkout our ToDo list and [Issues](https://github.com/catkhuu/Run2Gether/issues) for features we're looking to integrate, and bugs that need fixing. 
+We're always looking for eager developers with a passion for running to contribute. Checkout our [ToDo list](https://github.com/catkhuu/Run2Gether/blob/master/todo.md) and [Issues](https://github.com/catkhuu/Run2Gether/issues) for features we're looking to integrate, and bugs that need fixing. 
 
 #####*Please fork and clone this repository before submitting a pull request*
 
